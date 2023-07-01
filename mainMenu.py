@@ -46,7 +46,7 @@ class MainMenu:
         self.grid4_button.configure(font=(h.button_text_font, h.button_text_size))
         self.grid4_button.grid(row=1, column=1, pady=5, padx=5)
 
-        # Grid pro startovací tlačítko
+        # A grid for the start button
         start_button_frame = tk.Frame(root, padx=10, pady=10, bg=h.frame_colour)
         start_button_frame.place(relx=.65, rely=.4)
         # Start button
