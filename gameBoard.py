@@ -20,3 +20,12 @@ class TicTacToeBoard:
             for column in range(3):
                 self.h.board3[row][column] = tk.Button(board_frame, text="", width=16, height=8)
                 self.h.board3[row][column].grid(row=row, column=column)
+                
+    def create_board4(self, board):
+        board_frame = tk.Frame(board)
+        board_frame.place(relx=0.5, rely=.56, anchor="center")
+        
+        for row in range(4):
+            for column in range(4):
+                self.h.board4[row][column] = tk.Button(board)
+                self.h.board4[row][column].grid(row=row, column=column)
