@@ -4,6 +4,7 @@ from help import Help
 class MainMenu:
     def __init__(self, root):
         h = Help()
+        self.h = h
         title_frame = tk.Frame(root, pady=10, bg=h.frame_colour)
         title_frame.pack()
 
@@ -50,20 +51,20 @@ class MainMenu:
 
     # action functions to configure what each button does
     def action0(self):
-        self.pvp_button.configure(bg=Help.button_colour_clicked)
-        self.pve_button.configure(bg=Help.button_colour_inactive)
+        self.pvp_button.configure(bg=self.h.button_colour_clicked)
+        self.pve_button.configure(bg=self.h.button_colour_inactive)
 
     def action1(self):
-        self.pve_button.configure(bg=Help.button_colour_clicked)
-        self.pvp_button.configure(bg=Help.button_colour_inactive)
+        self.pve_button.configure(bg=self.h.button_colour_clicked)
+        self.pvp_button.configure(bg=self.h.button_colour_inactive)
 
     def action2(self):
-        self.grid3_button.configure(bg=Help.button_colour_clicked)
-        self.grid4_button.configure(bg=Help.button_colour_inactive)
+        self.grid3_button.configure(bg=self.h.button_colour_clicked)
+        self.grid4_button.configure(bg=self.h.button_colour_inactive)
 
     def action3(self):
-        self.grid4_button.configure(bg=Help.button_colour_clicked)
-        self.grid3_button.configure(bg=Help.button_colour_inactive)
+        self.grid4_button.configure(bg=self.h.button_colour_clicked)
+        self.grid3_button.configure(bg=self.h.button_colour_inactive)
 
     def action4(self):
-        self.start_button.configure(bg=Help.button_colour_clicked)
+        self.start_button.configure(bg=self.h.button_colour_clicked)
