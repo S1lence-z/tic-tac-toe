@@ -8,7 +8,7 @@ class MainMenu:
         title_frame.pack()
 
         # Main menu frame
-        self.title = tk.Label(title_frame, padx=10, pady=10, text="Main Menu", font=(h.button_text_font, h.title_size), bg=h.title_colour)
+        self.title = tk.Label(title_frame, padx=10, pady=10, text="Main Menu", font=(h.title_text_font, h.title_size), bg=h.title_colour)
         self.title.pack()
 
         # main menu window, the little stripe/bar at the top of the page
@@ -56,19 +56,19 @@ class MainMenu:
     # action functions to configure what each button does
     def action0(self) -> None:
         self.pvp_button.configure(bg=self.h.button_colour_clicked)
-        self.pve_button.configure(bg=self.h.button_colour_inactive)
+        self.pve_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
 
     def action1(self) -> None:
         self.pve_button.configure(bg=self.h.button_colour_clicked)
-        self.pvp_button.configure(bg=self.h.button_colour_inactive)
+        self.pvp_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
 
     def action2(self) -> None:
         self.grid3_button.configure(bg=self.h.button_colour_clicked)
-        self.grid4_button.configure(bg=self.h.button_colour_inactive)
+        self.grid4_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
 
     def action3(self) -> None:
         self.grid4_button.configure(bg=self.h.button_colour_clicked)
-        self.grid3_button.configure(bg=self.h.button_colour_inactive)
+        self.grid3_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
 
     def action4(self) -> None:
         self.start_button.configure(bg=self.h.button_colour_clicked)
