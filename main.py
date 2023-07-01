@@ -8,7 +8,7 @@ if __name__ == "__main__":
     window = tk.Tk()
     window.minsize(600, 600)
     window.maxsize(600, 600)
-    window.title("Tic-Tac-Toe Game")
+    window.title("TicTacToe Game")
     window.configure(bg=h.frame_colour)
     gui = MainMenu(window)
     # gui = GameBoard(window)
