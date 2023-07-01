@@ -3,7 +3,7 @@ import random
 class Help:
     def __init__(self) -> None:
         # variable for tkinter design
-        self.button_text = "Arial"
+        self.button_text_font = "Arial"
         self.button_text_size = 12
         self.title_size = 30
         self.button_colour = "green"
