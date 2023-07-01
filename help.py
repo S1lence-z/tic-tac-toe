@@ -10,7 +10,7 @@ class Help:
         self.button_colour_clicked = "red"
         self.button_colour_inactive = "black"
         self.text_button_colour = "blue"
-        self.frame_colour = "grey"
+        self.frame_colour = "light blue"
         self.title_colour = "white"
 
         # variables for the game itself
