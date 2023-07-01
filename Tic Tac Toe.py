@@ -21,11 +21,11 @@ class MainMenu:
         title_frame = tk.Frame(root, pady=10, bg=frame_colour)
         title_frame.pack()
 
-        # Main menu fram
+        # Main menu frame
         self.title = tk.Label(title_frame, padx=10, pady=10, text="Main Menu", font=(font1, title_size), bg=title_colour)
         self.title.pack()
 
-        # main menu window
+        # main menu window, the little stripe at the top of the page
         lista = tk.Menu(root)
         root.config(menu=lista)
         options_menu = tk.Menu(lista)
