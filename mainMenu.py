@@ -38,7 +38,7 @@ class MainMenu:
 
         # A button for 3x3
         self.grid3_button = tk.Button(buttonframe, width=14, height=7, text="3x3", bg=h.button_colour, command=self.action2)
-        self.grid3_button_button.configure(font=(h.button_text_font, h.button_text_size))
+        self.grid3_button.configure(font=(h.button_text_font, h.button_text_size))
         self.grid3_button.grid(row=1, column=0, pady=5, padx=5)
 
         # A button for 4x4
