@@ -2,7 +2,7 @@ import tkinter as tk
 from mainMenu import MainMenu
 from gameBoard import TicTacToeBoard
 
-def main():
+if __name__ == "__main__":
     window = tk.Tk()
     window.minsize(500, 500)
     window.maxsize(500, 500)
@@ -11,5 +11,3 @@ def main():
     gui = MainMenu(window)
     # gui = TicTacToeBoard(window2)
     window.mainloop()
-
-main()
