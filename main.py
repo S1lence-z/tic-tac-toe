@@ -9,5 +9,5 @@ if __name__ == "__main__":
     window.title("Tic-Tac-Toe Game")
     window.configure(bg="grey")
     gui = MainMenu(window)
-    # gui = TicTacToeBoard(window2)
+    # gui = TicTacToeBoard(window)
     window.mainloop()
