@@ -55,19 +55,19 @@ class MainMenu:
 
     # action functions to configure what each button does
     def action0(self) -> None:
-        self.pvp_button.configure(bg=self.h.button_colour_clicked)
+        self.pvp_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.pve_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
 
     def action1(self) -> None:
-        self.pve_button.configure(bg=self.h.button_colour_clicked)
+        self.pve_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.pvp_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
 
     def action2(self) -> None:
-        self.grid3_button.configure(bg=self.h.button_colour_clicked)
+        self.grid3_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.grid4_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
 
     def action3(self) -> None:
-        self.grid4_button.configure(bg=self.h.button_colour_clicked)
+        self.grid4_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.grid3_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
 
     def action4(self) -> None:

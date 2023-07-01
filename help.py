@@ -18,7 +18,7 @@ class Help:
         self.button_text_colour_inactive = "red"
         # clicked button
         self.button_colour_clicked = "red"
-        self.button_text_colour_clicked = "blue"
+        self.button_text_colour_clicked = "black"
         # start button
         self.start_button_colour = "green"
         self.start_button_text_colour = "black"
