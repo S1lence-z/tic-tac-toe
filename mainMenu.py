@@ -12,11 +12,11 @@ class MainMenu:
         self.title = tk.Label(title_frame, padx=10, pady=10, text="Main Menu", font=(h.button_text_font, h.title_size), bg=h.title_colour)
         self.title.pack()
 
-        # main menu window, the little stripe at the top of the page
-        lista = tk.Menu(root)
-        root.config(menu=lista)
-        options_menu = tk.Menu(lista)
-        lista.add_cascade(label="Options", menu=options_menu)
+        # main menu window, the little stripe/bar at the top of the page
+        bar = tk.Menu(root)
+        root.config(menu=bar)
+        options_menu = tk.Menu(bar)
+        bar.add_cascade(label="Options", menu=options_menu)
         options_menu.add_command(label="Restart")
         options_menu.add_command(label="Exit", command=root.quit)
        
