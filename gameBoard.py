@@ -25,7 +25,7 @@ class TicTacToeBoard:
         board_frame = tk.Frame(board)
         board_frame.place(relx=0.5, rely=.56, anchor="center")
 
-        sub_frame = tk.Frame(board_frame)  # Create a new frame for the buttons using grid
+        sub_frame = tk.Frame(board_frame)
         sub_frame.grid(row=0, column=0)
 
         for row in range(4):
