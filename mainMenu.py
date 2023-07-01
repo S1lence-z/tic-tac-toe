@@ -49,8 +49,8 @@ class MainMenu:
         start_button_frame = tk.Frame(root, padx=10, pady=10, bg=h.frame_colour)
         start_button_frame.place(relx=.65, rely=.4)
         # Start button
-        self.start_button = tk.Button(start_button_frame, width=14, height=7, text="START", fg=h.button_text_colour, bg=h.button_colour, command=self.action4)
-        self.start_button.configure(font=(h.button_text_font, h.button_text_size))
+        self.start_button = tk.Button(start_button_frame, width=14, height=7, text="START", bg=h.start_button_colour, command=self.action4)
+        self.start_button.configure(font=(h.start_button_text_colour, h.button_text_size))
         self.start_button.grid(row=1, column=1, pady=5, padx=5)
 
     # action functions to configure what each button does
