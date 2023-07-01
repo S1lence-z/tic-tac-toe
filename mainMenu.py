@@ -6,40 +6,44 @@ class MainMenu:
         self.h = help
         self.create_title_frame(root, help)
         self.create_menu_bar(root)
-       
-        # A grid for all the settings buttons, PvP, PvE, 3x3, 4x4
-        buttonframe = tk.Frame(root, padx = 10, pady = 10, bg=help.frame_colour)
-        buttonframe.columnconfigure(0, weight=1)
-        buttonframe.columnconfigure(1, weight=1)
-        buttonframe.place(relx=0.33, rely=.55, anchor="center")
         
-        # A button for PvP
-        self.pvp_button = tk.Button(buttonframe, width = 14, height=7, text="PvP", bg=help.button_colour, command=self.action0)
-        self.pvp_button.configure(font=(help.button_text_font, help.button_text_size))
-        self.pvp_button.grid(row=0, column=0, pady=5)
+        button_frame = self.create_button_frame(root)
+        self.pvp_button = self.create_button(button_frame, "PvP", self.action0, 0, 0)
+        self.pve_button = self.create_button(button_frame, "PvE", self.action1, 0, 1)
+        self.grid3_button = self.create_button(button_frame, "3x3", self.action2, 1, 0)
+        self.grid4_button = self.create_button(button_frame, "4x4", self.action3, 1, 1)
         
-        # A button for PvE
-        self.pve_button = tk.Button(buttonframe, width = 14, height=7, text="PvE", bg=help.button_colour, command=self.action1)
-        self.pve_button.configure(font=(help.button_text_font, help.button_text_size))
-        self.pve_button.grid(row=0, column=1, pady=5, padx=5)
-
-        # A button for 3x3
-        self.grid3_button = tk.Button(buttonframe, width=14, height=7, text="3x3", bg=help.button_colour, command=self.action2)
-        self.grid3_button.configure(font=(help.button_text_font, help.button_text_size))
-        self.grid3_button.grid(row=1, column=0, pady=5, padx=5)
-
-        # A button for 4x4
-        self.grid4_button = tk.Button(buttonframe, width=14, height=7, text="4x4", bg=help.button_colour, command=self.action3)
-        self.grid4_button.configure(font=(help.button_text_font, help.button_text_size))
-        self.grid4_button.grid(row=1, column=1, pady=5, padx=5)
-
-        # A grid for the start button
-        start_button_frame = tk.Frame(root, padx=10, pady=10, bg=help.frame_colour)
-        start_button_frame.place(relx=.65, rely=.4)
+        start_button_frame = self.create_start_button_frame(root)
+        self.create_start_button(start_button_frame, "START", self.action4, 1, 1)
+        
         # Start button
         self.start_button = tk.Button(start_button_frame, width=14, height=7, text="START", bg=help.start_button_colour, command=self.action4)
         self.start_button.configure(font=(help.start_button_text_colour, help.button_text_size))
         self.start_button.grid(row=1, column=1, pady=5, padx=5)
+        
+    def create_start_button_frame(self, root):
+        start_button_frame = tk.Frame(root, padx=10, pady=10, bg=help.frame_colour)
+        start_button_frame.place(relx=.65, rely=.4)
+        return start_button_frame
+    
+    def create_start_button(self, frame, text, action, row, column):
+        start_button = tk.Button(frame, width=14, height=7, text=text, bg=self.h.start_button_colour, command=action)
+        start_button.configure(font=(self.h.start_button_text_colour, self.h.button_text_size))
+        start_button.grid(row=row, column=column, pady=5, padx=5)
+        return start_button
+    
+    def create_button_frame(self, root) -> None:
+        button_frame = tk.Frame(root, padx = 10, pady = 10, bg=self.h.frame_colour)
+        button_frame.columnconfigure(0, weight=1)
+        button_frame.columnconfigure(1, weight=1)
+        button_frame.place(relx=0.33, rely=.55, anchor="center")
+        return button_frame
+        
+    def create_button(self, frame, text, action, row, column):
+        button = tk.Button(frame, width=14, height=7, text=text, bg=self.h.button_colour, command=action)
+        button.configure(font=(self.h.button_text_font, self.h.button_text_size))
+        button.grid(row=row, column=column, pady=5, padx=5)
+        return button
         
     def create_title_frame(self, root, h) -> None:
         title_frame = tk.Frame(root, pady=10, bg=h.frame_colour)
