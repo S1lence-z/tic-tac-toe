@@ -8,7 +8,7 @@ class GameBoard:
         title_frame = tk.Frame(board, pady=10, bg=h.frame_colour)
         title_frame.pack()
        
-        player_turn_label = tk.Label(title_frame, padx=10, pady=10, text=h.player + " turn", font=(h.font1, h.title_size), bg=h.title_colour)
+        player_turn_label = tk.Label(title_frame, padx=10, pady=10, text=h.player + " turn", font=(h.button_text, h.title_size), bg=h.title_colour)
         player_turn_label.pack(side="top")
         self.create_board4(board)
 
