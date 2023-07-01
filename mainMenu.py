@@ -2,7 +2,7 @@ import tkinter as tk
 from help import Help
 
 class MainMenu:
-    def __init__(self, root: tk, h: Help()):
+    def __init__(self, root: tk, h: Help()) -> None:
         self.h = h
         title_frame = tk.Frame(root, pady=10, bg=h.frame_colour)
         title_frame.pack()
@@ -54,21 +54,21 @@ class MainMenu:
         self.start_button.grid(row=1, column=1, pady=5, padx=5)
 
     # action functions to configure what each button does
-    def action0(self):
+    def action0(self) -> None:
         self.pvp_button.configure(bg=self.h.button_colour_clicked)
         self.pve_button.configure(bg=self.h.button_colour_inactive)
 
-    def action1(self):
+    def action1(self) -> None:
         self.pve_button.configure(bg=self.h.button_colour_clicked)
         self.pvp_button.configure(bg=self.h.button_colour_inactive)
 
-    def action2(self):
+    def action2(self) -> None:
         self.grid3_button.configure(bg=self.h.button_colour_clicked)
         self.grid4_button.configure(bg=self.h.button_colour_inactive)
 
-    def action3(self):
+    def action3(self) -> None:
         self.grid4_button.configure(bg=self.h.button_colour_clicked)
         self.grid3_button.configure(bg=self.h.button_colour_inactive)
 
-    def action4(self):
+    def action4(self) -> None:
         self.start_button.configure(bg=self.h.button_colour_clicked)
