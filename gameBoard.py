@@ -1,7 +1,7 @@
 import tkinter as tk
 from help import Help
 
-class TicTacToeBoard:
+class GameBoard:
     def __init__(self, board):
         h = Help()
         self.h = h

@@ -1,7 +1,7 @@
 import tkinter as tk
 from help import Help
 from mainMenu import MainMenu
-from gameBoard import TicTacToeBoard
+from gameBoard import GameBoard
 
 if __name__ == "__main__":
     h = Help()
@@ -11,5 +11,5 @@ if __name__ == "__main__":
     window.title("Tic-Tac-Toe Game")
     window.configure(bg=h.frame_colour)
     gui = MainMenu(window)
-    # gui = TicTacToeBoard(window)
+    # gui = GameBoard(window)
     window.mainloop()
