@@ -27,26 +27,31 @@ class MainMenu:
         buttonframe.place(relx=0.33, rely=.55, anchor="center")
         
         # A button for PvP
-        self.pvp_button = tk.Button(buttonframe, width = 14, height=7,  text="PvP", font=(h.button_text_font, h.button_text_size), bg=h.button_colour, command=self.action0)
+        self.pvp_button = tk.Button(buttonframe, width = 14, height=7, text="PvP", bg=h.button_colour, command=self.action0)
+        self.pvp_button.configure(font=(h.button_text_font, h.button_text_size))
         self.pvp_button.grid(row=0, column=0, pady=5)
         
         # A button for PvE
-        self.pve_button = tk.Button(buttonframe, width = 14, height=7, text="PvE", font=(h.button_text_font, h.button_text_size), bg=h.button_colour, command=self.action1)
+        self.pve_button = tk.Button(buttonframe, width = 14, height=7, text="PvE", bg=h.button_colour, command=self.action1)
+        self.pve_button.configure(font=(h.button_text_font, h.button_text_size))
         self.pve_button.grid(row=0, column=1, pady=5, padx=5)
 
         # A button for 3x3
-        self.grid3_button = tk.Button(buttonframe, width=14, height=7, text="3x3", font=(h.button_text_font, h.button_text_size), bg=h.button_colour, command=self.action2)
+        self.grid3_button = tk.Button(buttonframe, width=14, height=7, text="3x3", bg=h.button_colour, command=self.action2)
+        self.grid3_button_button.configure(font=(h.button_text_font, h.button_text_size))
         self.grid3_button.grid(row=1, column=0, pady=5, padx=5)
 
         # A button for 4x4
-        self.grid4_button = tk.Button(buttonframe, width=14, height=7, text="4x4", font=(h.button_text_font, h.button_text_size), bg=h.button_colour, command=self.action3)
+        self.grid4_button = tk.Button(buttonframe, width=14, height=7, text="4x4", bg=h.button_colour, command=self.action3)
+        self.grid4_button.configure(font=(h.button_text_font, h.button_text_size))
         self.grid4_button.grid(row=1, column=1, pady=5, padx=5)
 
         # Grid pro startovací tlačítko
         start_button_frame = tk.Frame(root, padx=10, pady=10, bg=h.frame_colour)
         start_button_frame.place(relx=.65, rely=.4)
         # Start button
-        self.start_button = tk.Button(start_button_frame, width=14, height=7, text="START", font=(h.button_text_font, h.button_text_size), fg=h.text_button_colour,bg=h.button_colour, command=self.action4)
+        self.start_button = tk.Button(start_button_frame, width=14, height=7, text="START", fg=h.text_button_colour, bg=h.button_colour, command=self.action4)
+        self.start_button.configure(font=(h.button_text_font, h.button_text_size))
         self.start_button.grid(row=1, column=1, pady=5, padx=5)
 
     # action functions to configure what each button does
