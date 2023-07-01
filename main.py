@@ -10,6 +10,6 @@ if __name__ == "__main__":
     window.maxsize(600, 600)
     window.title("TicTacToe Game")
     window.configure(bg=h.frame_colour)
-    gui = MainMenu(window)
-    # gui = GameBoard(window)
+    gui = MainMenu(window, Help())
+    # gui = GameBoard(window, Help())
     window.mainloop()

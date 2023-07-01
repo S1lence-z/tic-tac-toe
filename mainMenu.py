@@ -2,8 +2,7 @@ import tkinter as tk
 from help import Help
 
 class MainMenu:
-    def __init__(self, root):
-        h = Help()
+    def __init__(self, root: tk, h: Help()):
         self.h = h
         title_frame = tk.Frame(root, pady=10, bg=h.frame_colour)
         title_frame.pack()
