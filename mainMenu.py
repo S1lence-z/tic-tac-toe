@@ -14,15 +14,10 @@ class MainMenu:
         self.grid4_button = self.create_button(button_frame, "4x4", self.action3, 1, 1)
         
         start_button_frame = self.create_start_button_frame(root)
-        self.create_start_button(start_button_frame, "START", self.action4, 1, 1)
-        
-        # Start button
-        self.start_button = tk.Button(start_button_frame, width=14, height=7, text="START", bg=help.start_button_colour, command=self.action4)
-        self.start_button.configure(font=(help.start_button_text_colour, help.button_text_size))
-        self.start_button.grid(row=1, column=1, pady=5, padx=5)
+        self.start_button = self.create_start_button(start_button_frame, "START", self.action4, 1, 1)
         
     def create_start_button_frame(self, root):
-        start_button_frame = tk.Frame(root, padx=10, pady=10, bg=help.frame_colour)
+        start_button_frame = tk.Frame(root, padx=10, pady=10, bg=self.h.frame_colour)
         start_button_frame.place(relx=.65, rely=.4)
         return start_button_frame
     
