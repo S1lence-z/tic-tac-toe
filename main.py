@@ -19,7 +19,7 @@ class TicTacToeGame:
     def gameLoop(self) -> None:
         if self.current_game_state == "mainMenu":
             menu = MainMenu(self.window, self.h)
-            if self.start_game_status:
+            if (self.start_game_status):
                 self.current_game_state = "inGame"
                 self.window.quit()
         
