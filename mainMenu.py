@@ -6,13 +6,13 @@ class MainMenu:
         self.h = help
         self.create_title_frame(root, help)
         self.create_menu_bar(root)
-        
+        # create a frame and buttons to control game settings
         button_frame = self.create_button_frame(root)
         self.pvp_button = self.create_button(button_frame, "PvP", self.action0, 0, 0)
         self.pve_button = self.create_button(button_frame, "PvE", self.action1, 0, 1)
         self.grid3_button = self.create_button(button_frame, "3x3", self.action2, 1, 0)
         self.grid4_button = self.create_button(button_frame, "4x4", self.action3, 1, 1)
-        
+        # create a frame and the start button
         start_button_frame = self.create_start_button_frame(root)
         self.start_button = self.create_start_button(start_button_frame, "START", self.action4, 1, 1)
         
