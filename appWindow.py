@@ -2,9 +2,8 @@ import tkinter as tk
 from help import Help
 
 class AppWindow(tk.Tk):
-    def __init__(self):
+    def __init__(self, h: Help):
         super().__init__()
-        h = Help()
         # main tkinter window settings
         self.minsize(600, 600)
         self.maxsize(600, 600)
