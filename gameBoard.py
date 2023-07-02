@@ -10,7 +10,7 @@ class GameBoard:
        
         player_turn_label = tk.Label(title_frame, padx=10, pady=10, text=h.player + " turn", font=(h.button_text_font, h.title_size), bg=h.title_colour)
         player_turn_label.pack(side="top")
-        self.create_board4(board)
+        self.create_board3(board)
 
     def create_board3(self, board):
         board_frame = tk.Frame(board)
@@ -18,7 +18,7 @@ class GameBoard:
         
         for row in range(3):
             for column in range(3):
-                self.h.board3[row][column] = tk.Button(board_frame, text="", width=16, height=8)
+                self.h.board3[row][column] = tk.Button(board_frame, text="", width=20, height=10)
                 self.h.board3[row][column].grid(row=row, column=column)
                 
     def create_board4(self, board):
