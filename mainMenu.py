@@ -57,7 +57,6 @@ class MainMenu:
         bar.add_cascade(label="Options", menu=options_menu)
         options_menu.add_command(label="Restart")
         options_menu.add_command(label="Exit", command=root.quit)
-        
 
     # action functions to configure what each button does
     def action0(self) -> None:
