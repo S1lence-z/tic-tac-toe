@@ -2,7 +2,7 @@ import tkinter as tk
 from help import Help
 
 class GameBoard:
-    def __init__(self, board):
+    def __init__(self, board, h):
         h = Help()
         self.h = h
         title_frame = tk.Frame(board, pady=10, bg=h.frame_colour)
