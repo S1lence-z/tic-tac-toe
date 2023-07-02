@@ -2,7 +2,7 @@ import tkinter as tk
 from help import Help
 
 class MainMenu:
-    def __init__(self, root: tk, help: Help()) -> None:
+    def __init__(self, root: tk, help: Help) -> None:
         self.h = help
         self.create_title_frame(root, help)
         self.create_menu_bar(root)
@@ -14,16 +14,19 @@ class MainMenu:
         self.grid4_button = self.create_button(button_frame, "4x4", self.action3, 1, 1)
         # create a frame and the start button
         start_button_frame = self.create_start_button_frame(root)
-        self.start_button = self.create_start_button(start_button_frame, "START", self.action4, 1, 1)
+        self.start_button = self.create_start_button(start_button_frame, "START", 1, 1)
+        # variables for the start button
+        self.start_game_status = False
         
     def create_start_button_frame(self, root):
         start_button_frame = tk.Frame(root, padx=10, pady=10, bg=self.h.frame_colour)
         start_button_frame.place(relx=.65, rely=.4)
         return start_button_frame
     
-    def create_start_button(self, frame, text, action, row, column):
-        start_button = tk.Button(frame, width=14, height=7, text=text, bg=self.h.start_button_colour, command=action)
+    def create_start_button(self, frame, text, row, column):
+        start_button = tk.Button(frame, width=14, height=7, text=text, bg=self.h.start_button_colour)
         start_button.configure(font=(self.h.start_button_text_colour, self.h.button_text_size))
+        start_button.configure(command=lambda: self.action4(start_button))
         start_button.grid(row=row, column=column, pady=5, padx=5)
         return start_button
     
@@ -75,5 +78,10 @@ class MainMenu:
         self.grid4_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.grid3_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
 
-    def action4(self) -> None:
-        self.start_button.configure(bg=self.h.button_colour_clicked)
+    def action4(self, start_button):
+        if self.start_game_status:
+            start_button.configure(bg=self.h.start_button_colour)
+            self.start_game_status = False
+        else:
+            start_button.configure(bg=self.h.button_colour_clicked)
+            self.start_game_status = True
