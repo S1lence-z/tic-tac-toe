@@ -2,9 +2,9 @@ import tkinter as tk
 from help import Help
 
 class MainMenu:
-    def __init__(self, root: tk, h: Help) -> None:
-        self.h = h
-        self.create_title_frame(root, h)
+    def __init__(self, root: tk, help: Help) -> None:
+        self.h = help
+        self.create_title_frame(root)
         self.create_menu_bar(root)
         # create a frame and buttons to control game settings
         self.button_frame = self.create_button_frame(root)
@@ -39,11 +39,11 @@ class MainMenu:
         button.configure(font=(self.h.button_text_font, self.h.button_text_size))
         return button
         
-    def create_title_frame(self, root, h) -> None:
-        title_frame = tk.Frame(root, pady=10, bg=h.frame_colour)
+    def create_title_frame(self, root) -> None:
+        title_frame = tk.Frame(root, pady=10, bg=self.h.frame_colour)
         title_frame.pack()
         # Main menu frame
-        self.title = tk.Label(title_frame, padx=10, pady=10, text="Main Menu", font=(h.title_text_font, h.title_size), bg=h.title_colour)
+        self.title = tk.Label(title_frame, padx=10, pady=10, text="Main Menu", font=(self.h.title_text_font, self.h.title_size), bg=self.h.title_colour)
         self.title.pack()
         
     def create_menu_bar(self, root) -> None:
@@ -57,9 +57,10 @@ class MainMenu:
         options_menu.add_command(label="Exit", command=root.quit)
         
     def show(self) -> None:
+        # start frame and start button
         self.start_button_frame.place(relx=.65, rely=.4)
         self.start_button.grid(row=1, column=1, pady=5, padx=5)
-        # other buttons
+        # the frame for other buttons and the buttons themselves
         self.button_frame.place(relx=0.33, rely=.55, anchor="center")
         self.pvp_button.grid(row=0, column=0, pady=5, padx=5)
         self.pve_button.grid(row=0, column=1, pady=5, padx=5)
