@@ -9,11 +9,11 @@ class TicTacToeGame:
         # necessary classes and variables
         self.h = Help()
         self.window = AppWindow(self.h)
-        self.chosen_board_size = "3"
+        self.chosen_board_size = "4"
         self.chosen_game_mode = "PvP"
         # possible game states
         # all_possible_game_states = { mainMenu, inGame, endGame }
-        self.current_game_state = "mainMenu"
+        self.current_game_state = "inGame"
         # game windows
         self.mainMenu = MainMenu(self.window, self.h)
         self.gameBoard = GameBoard(self.window, self.h)
@@ -25,7 +25,7 @@ class TicTacToeGame:
                 self.current_game_state = "inGame"
         
         elif self.current_game_state == "inGame":
-            print("more")
+            self.gameBoard.show(self.chosen_board_size)
             
         elif self.current_game_state == "endGame":
             print("Not implemented yet")
