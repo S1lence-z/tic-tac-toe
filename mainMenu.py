@@ -2,9 +2,9 @@ import tkinter as tk
 from help import Help
 
 class MainMenu:
-    def __init__(self, root: tk, help: Help) -> None:
-        self.h = help
-        self.create_title_frame(root, help)
+    def __init__(self, root: tk, h: Help) -> None:
+        self.h = h
+        self.create_title_frame(root, h)
         self.create_menu_bar(root)
         # create a frame and buttons to control game settings
         button_frame = self.create_button_frame(root)
