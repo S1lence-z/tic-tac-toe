@@ -30,5 +30,5 @@ class GameBoard:
 
         for row in range(4):
             for column in range(4):
-                self.h.board4[row][column] = tk.Button(sub_frame, text="", width=10, height=8)
+                self.h.board4[row][column] = tk.Button(sub_frame, text="", width=18, height=7)
                 self.h.board4[row][column].grid(row=row, column=column)
