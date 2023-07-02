@@ -4,8 +4,10 @@ from help import Help
 class MainMenu:
     def __init__(self, root: tk, help: Help) -> None:
         self.h = help
-        self.create_title_frame(root)
         self.create_menu_bar(root)
+        # main menu title
+        self.title_frame = self.create_title_frame(root)
+        self.title_label = self.create_title_label(self.title_frame)        
         # create a frame and buttons to control game settings
         self.button_frame = self.create_button_frame(root)
         self.pvp_button = self.create_button(self.button_frame, "PvP", self.action0, 0, 0)
@@ -41,10 +43,11 @@ class MainMenu:
         
     def create_title_frame(self, root) -> None:
         title_frame = tk.Frame(root, pady=10, bg=self.h.frame_colour)
-        title_frame.pack()
-        # Main menu frame
-        self.title = tk.Label(title_frame, padx=10, pady=10, text="Main Menu", font=(self.h.title_text_font, self.h.title_size), bg=self.h.title_colour)
-        self.title.pack()
+        return title_frame
+        
+    def create_title_label(self, title_frame) -> None:
+        title_label = tk.Label(title_frame, padx=10, pady=10, text="Main Menu", font=(self.h.title_text_font, self.h.title_size), bg=self.h.title_colour)
+        return title_label
         
     def create_menu_bar(self, root) -> None:
         # main menu window, the little stripe/bar at the top of the page
@@ -57,6 +60,9 @@ class MainMenu:
         options_menu.add_command(label="Exit", command=root.quit)
         
     def show(self) -> None:
+        # the main menu title
+        self.title_frame.pack()
+        self.title_label.pack()
         # start frame and start button
         self.start_button_frame.place(relx=.65, rely=.4)
         self.start_button.grid(row=1, column=1, pady=5, padx=5)
