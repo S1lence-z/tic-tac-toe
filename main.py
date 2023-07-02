@@ -21,7 +21,7 @@ class TicTacToeGame:
             menu = MainMenu(self.window, self.h)
             if (self.start_game_status):
                 self.current_game_state = "inGame"
-                self.window.quit()
+                self.window.quit
         
         elif self.current_game_state == "inGame":
             game = GameBoard(self.window, self.h)
