@@ -25,9 +25,9 @@ class TicTacToeGame:
     def gameLoop(self) -> None:
         match self.current_game_state:
             case "mainMenu":
-                current_window = MainMenu(self.window, self.h)
+                MainMenu(self.window, self.h)
             case "inGame":
-                current_window = GameBoard(self.window, self.h)
+                GameBoard(self.window, self.h)
             case "endGame":
                 print("Not implemented yet")
         
