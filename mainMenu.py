@@ -46,7 +46,6 @@ class MainMenu:
     def create_title_frame(self, root, h) -> None:
         title_frame = tk.Frame(root, pady=10, bg=h.frame_colour)
         title_frame.pack()
-
         # Main menu frame
         self.title = tk.Label(title_frame, padx=10, pady=10, text="Main Menu", font=(h.title_text_font, h.title_size), bg=h.title_colour)
         self.title.pack()
