@@ -79,5 +79,5 @@ class MainMenu:
         self.grid3_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
 
     def action4(self, start_button):
-            start_button.configure(bg=self.h.button_colour_clicked)
-            self.start_game_status = False
+        start_button.configure(bg=self.h.button_colour_clicked)
+        self.start_game_status = True

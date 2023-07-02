@@ -12,19 +12,19 @@ class TicTacToeGame:
         self.chosen_board_size = "3"
         self.chosen_game_mode = "PvP"
         # possible game states
-        self.current_game_state = "mainMenu"
         # all_possible_game_states = { mainMenu, inGame, endGame }
+        self.current_game_state = "mainMenu"
         self.start_game_status = False
+        menu = MainMenu(self.window, self.h)
+        game = GameBoard(self.window, self.h)
 
     def gameLoop(self) -> None:
         if self.current_game_state == "mainMenu":
-            menu = MainMenu(self.window, self.h)
             if (self.start_game_status):
                 self.current_game_state = "inGame"
-                self.window.quit
         
         elif self.current_game_state == "inGame":
-            game = GameBoard(self.window, self.h)
+            print("more")
         
         elif self.current_game_state == "endGame":
             print("Not implemented yet")
