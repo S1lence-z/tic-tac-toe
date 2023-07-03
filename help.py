@@ -22,7 +22,6 @@ class Help:
         # start button
         self.start_button_colour = "green"
         self.start_button_text_colour = "black"
-        
         # variables for the game itself
         self.players = ["X", "O"]
         self.player = random.choice(self.players)
