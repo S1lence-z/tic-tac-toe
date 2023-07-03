@@ -106,4 +106,4 @@ class MainMenu:
         self.game_controller.change_gameBoard_size("4")
 
     def start_game(self):
-        self.game_controller.show_gameBoard()
+        self.game_controller.start_game()

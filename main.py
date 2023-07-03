@@ -22,7 +22,7 @@ class TicTacToeGame:
     def change_game_mode(self, mode: str) -> None:
         self.chosen_game_mode = mode
         
-    def show_gameBoard(self) -> None:
+    def start_game(self) -> None:
         self.mainMenu.hide()
         self.gameBoard.show(self.chosen_board_size)
     
