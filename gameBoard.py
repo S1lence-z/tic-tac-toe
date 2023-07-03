@@ -27,12 +27,9 @@ class GameBoard:
         board_frame = tk.Frame(board)
         board_frame.place(relx=0.5, rely=.56, anchor="center")
 
-        sub_frame = tk.Frame(board_frame)
-        sub_frame.grid(row=0, column=0)
-
         for row in range(4):
             for column in range(4):
-                widget = tk.Button(sub_frame, text="", width=18, height=7)
+                widget = tk.Button(board_frame, text="", width=18, height=7)
                 widget.grid(row=row, column=column)
                 self.board_widgets.append(widget)
 
