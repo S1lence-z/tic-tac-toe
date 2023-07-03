@@ -68,6 +68,7 @@ class GameBoard:
         if (clicked_button.cget("text") == ""):
             clicked_button.configure(text=self.current_player)
             if (self.check_winner(self.game_controller.chosen_board_size)):
+                self.h.player = self.current_player
                 self.game_controller.end_screen()
             self.player_switch()
             self.player_turn_label.configure(text=self.current_player + "'s turn")
