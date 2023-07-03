@@ -148,7 +148,8 @@ class GameBoard:
                [6, 9, 12],
                [7, 10, 13],
                [8, 11, 14],
-               [9, 12, 15]
+               [9, 12, 15],
+               [2, 5, 8]
             ]
             for combination in diagonal_checks:
                 if (
