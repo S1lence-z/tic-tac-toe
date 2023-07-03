@@ -25,10 +25,10 @@ class TicTacToeGame:
         
     def start_game(self) -> None:
         if (self.chosen_game_mode == ""):
-            messagebox.showwarning("Warning", "You have to choose the game mode!")
+            messagebox.showwarning("Warning!", "You have to choose the game mode!")
             return
         if (self.chosen_board_size == ""):
-            messagebox.showwarning("Warning", "You have to choose the game board size!")
+            messagebox.showwarning("Warning!", "You have to choose the game board size!")
             return
         self.mainMenu.hide()
         self.gameBoard.show(self.chosen_board_size)
