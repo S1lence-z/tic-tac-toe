@@ -2,12 +2,16 @@ import tkinter as tk
 from help import Help
 
 class GameBoard:
-    def __init__(self, board, help: Help):
+    def __init__(self, board, help: Help, game_controller):
         self.h = help
+        self.game_controller = game_controller
         self.board = board
         self.title_frame = tk.Frame(board, pady=10, bg=help.frame_colour)
         self.player_turn_label = tk.Label(self.title_frame, padx=10, pady=10, text=help.player + " turn", font=(help.button_text_font, help.title_size), bg=help.title_colour)
         self.board_widgets = []
+        
+    def end_game(self) -> None:
+        self.game_controller.end_screen()
 
     def create_board3(self, board):
         board_frame = tk.Frame(board)

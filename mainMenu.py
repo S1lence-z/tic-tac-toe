@@ -2,8 +2,9 @@ import tkinter as tk
 from help import Help
 
 class MainMenu:
-    def __init__(self, root: tk, help: Help) -> None:
+    def __init__(self, root: tk, help: Help, game_controller) -> None:
         self.h = help
+        self.game_controller = game_controller
         self.create_menu_bar(root)
         # main menu title
         self.title_frame = self.create_title_frame(root)
@@ -16,7 +17,7 @@ class MainMenu:
         self.grid4_button = self.create_button(self.button_frame, "4x4", self.action3, 1, 1)
         # create a frame and the start button
         self.start_button_frame = self.create_start_button_frame(root)
-        self.start_button = self.create_start_button(self.start_button_frame, "START", 1, 1)
+        self.start_button = self.create_start_button(self.start_button_frame, "START", self.start_game, 1, 1)
         # variables for the start button
         self.start_game_status = False
         
@@ -24,10 +25,9 @@ class MainMenu:
         start_button_frame = tk.Frame(root, padx=10, pady=10, bg=self.h.frame_colour)
         return start_button_frame
     
-    def create_start_button(self, frame, text, row, column):
-        start_button = tk.Button(frame, width=14, height=7, text=text, bg=self.h.start_button_colour)
+    def create_start_button(self, frame, text, action, row, column):
+        start_button = tk.Button(frame, width=14, height=7, text=text, bg=self.h.start_button_colour, command=action)
         start_button.configure(font=(self.h.start_button_text_colour, self.h.button_text_size))
-        start_button.configure(command=lambda: self.action4(start_button))
         return start_button
     
     def create_button_frame(self, root) -> None:
@@ -101,6 +101,5 @@ class MainMenu:
         self.grid4_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.grid3_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
 
-    def action4(self, start_button):
-        start_button.configure(bg=self.h.button_colour_clicked)
-        self.start_game_status = True
+    def start_game(self):
+        self.game_controller.show_gameBoard()

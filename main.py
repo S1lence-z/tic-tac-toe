@@ -9,36 +9,21 @@ class TicTacToeGame:
         # necessary classes
         self.h = Help()
         self.window = AppWindow(self.h)
-        self.mainMenu = MainMenu(self.window, self.h)
-        self.gameBoard = GameBoard(self.window, self.h)
+        self.mainMenu = MainMenu(self.window, self.h, self)
+        self.mainMenu.show()
+        self.gameBoard = GameBoard(self.window, self.h, self)
         # game variables
         self.chosen_board_size = "4"
         self.chosen_game_mode = "PvP"
         
-        # possible game states
-        # all_possible_game_states = { mainMenu, inGame, endGame }
-        self.current_game_state = "mainMenu"
-
-    def gameLoop(self) -> None:
-        if self.current_game_state == "mainMenu":
-            self.mainMenu.show()
-            
-            # check if the start button is clicked
-            if self.mainMenu.start_game_status:
-                self.current_game_state = "inGame"
-                self.mainMenu.start_game_status = False
-                self.mainMenu.hide()
-                
-        elif self.current_game_state == "inGame":
-            self.gameBoard.show(self.chosen_board_size)
-            
-        elif self.current_game_state == "endGame":
-            print("Not implemented yet")
-            
-        self.window.update()
-        self.window.after(10, self.gameLoop)
+    def show_gameBoard(self) -> None:
+        self.mainMenu.hide()
+        self.gameBoard.show(self.chosen_board_size)
+    
+    def end_screen(self) -> None:
+        self.gameBoard.hide()
+        self.mainMenu.show()
 
 if __name__ == "__main__":
     game = TicTacToeGame()
-    game.window.after(0, game.gameLoop)
     game.window.mainloop()
