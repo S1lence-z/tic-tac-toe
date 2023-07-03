@@ -77,50 +77,75 @@ class GameBoard:
         if (board_size == "3"):
             # Horizontal check
             for row in range(3):
-                if (self.board_widgets[row * 3]["text"] == self.board_widgets[row * 3 + 1]["text"] == self.board_widgets[row * 3 + 2]["text"] != ""):
+                if (self.board_widgets[row * 3]["text"] == 
+                    self.board_widgets[row * 3 + 1]["text"] == 
+                    self.board_widgets[row * 3 + 2]["text"] != ""
+                    ):
                     return True
             # Vertical check
             for column in range(3):
-                if (self.board_widgets[column]["text"] == self.board_widgets[column + 3]["text"] == self.board_widgets[column + 6]["text"] != ""):
+                if (self.board_widgets[column]["text"] == 
+                    self.board_widgets[column + 3]["text"] == 
+                    self.board_widgets[column + 6]["text"] != ""
+                    ):
                     return True
             # Diagonal check
-            if (self.board_widgets[0]["text"] == self.board_widgets[4]["text"] == self.board_widgets[8]["text"] != ""):
+            if (self.board_widgets[0]["text"] == 
+                self.board_widgets[4]["text"] == 
+                self.board_widgets[8]["text"] != ""
+                ):
                 return True
-            if (self.board_widgets[2]["text"] == self.board_widgets[4]["text"] == self.board_widgets[6]["text"] != ""):
+            if (self.board_widgets[2]["text"] == 
+                self.board_widgets[4]["text"] == 
+                self.board_widgets[6]["text"] != ""
+                ):
                 return True
             return False
+        
         else:
             # Horizontal check
             for row in range(4):
-                if (self.board_widgets[row * 4]["text"] == self.board_widgets[row * 4 + 1]["text"] == self.board_widgets[row * 4 + 2]["text"] != ""):
+                if (self.board_widgets[row * 4]["text"] == 
+                    self.board_widgets[row * 4 + 1]["text"] == 
+                    self.board_widgets[row * 4 + 2]["text"] != ""
+                    ):
                     return True
-                if (self.board_widgets[row * 4 + 1]["text"] == self.board_widgets[row * 4 + 2]["text"] == self.board_widgets[row * 4 + 3]["text"] != ""):
+                if (self.board_widgets[row * 4 + 1]["text"] == 
+                    self.board_widgets[row * 4 + 2]["text"] == 
+                    self.board_widgets[row * 4 + 3]["text"] != ""
+                    ):
                     return True
             # Vertical check
             for column in range(4):
-                if (self.board_widgets[column]["text"] == self.board_widgets[column + 4]["text"] == self.board_widgets[column + 8]["text"] != ""):
+                if (self.board_widgets[column]["text"] == 
+                    self.board_widgets[column + 4]["text"] == 
+                    self.board_widgets[column + 8]["text"] != ""
+                    ):
                     return True
-                if (self.board_widgets[column + 4]["text"] == self.board_widgets[column + 8]["text"] == self.board_widgets[column + 12]["text"] != ""):
+                if (self.board_widgets[column + 4]["text"] == 
+                    self.board_widgets[column + 8]["text"] == 
+                    self.board_widgets[column + 12]["text"] != ""
+                    ):
                     return True
             # Diagonal check
-            if (self.board_widgets[0]["text"] == self.board_widgets[5]["text"] == self.board_widgets[10]["text"] != ""):
-                return True
-            if (self.board_widgets[1]["text"] == self.board_widgets[6]["text"] == self.board_widgets[11]["text"] != ""):
-                return True
-            if (self.board_widgets[2]["text"] == self.board_widgets[7]["text"] == self.board_widgets[12]["text"] != ""):
-                return True
-            if (self.board_widgets[3]["text"] == self.board_widgets[6]["text"] == self.board_widgets[9]["text"] != ""):
-                return True
-            if (self.board_widgets[4]["text"] == self.board_widgets[7]["text"] == self.board_widgets[10]["text"] != ""):
-                return True
-            if (self.board_widgets[5]["text"] == self.board_widgets[8]["text"] == self.board_widgets[11]["text"] != ""):
-                return True
-            if (self.board_widgets[6]["text"] == self.board_widgets[9]["text"] == self.board_widgets[12]["text"] != ""):
-                return True
-            if (self.board_widgets[7]["text"] == self.board_widgets[10]["text"] == self.board_widgets[13]["text"] != ""):
-                return True
-            if (self.board_widgets[8]["text"] == self.board_widgets[11]["text"] == self.board_widgets[14]["text"] != ""):
-                return True
-            if (self.board_widgets[9]["text"] == self.board_widgets[12]["text"] == self.board_widgets[15]["text"] != ""):
-                return True
+            diagonal_checks = [
+               [0, 5, 10],
+               [1, 6, 11],
+               [2, 7, 12],
+               [3, 6, 9],
+               [4, 7, 10],
+               [5, 8, 11],
+               [6, 9, 12],
+               [7, 10, 13],
+               [8, 11, 14],
+               [9, 12, 15]
+            ]
+            for combination in diagonal_checks:
+                if (
+                    self.board_widgets[combination[0]]["text"] == 
+                    self.board_widgets[combination[1]]["text"] == 
+                    self.board_widgets[combination[2]]["text"] != ""
+                    ):
+                    return True
+
             return False
