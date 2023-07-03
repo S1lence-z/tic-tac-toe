@@ -3,26 +3,29 @@ from tkinter import messagebox
 from help import Help
 
 class GameBoard:
-    def __init__(self, board, help: Help, game_controller):
+    def __init__(self, root, help: Help, game_controller):
         # necessary classes and class variables
         self.h = help
+        self.board = root
         self.game_controller = game_controller
-        self.board = board
+        self.board_frame = self.create_board_frame(self.board)
         # specific playe variables
         self.player = help.player
         self.current_player = self.player
         # game board label
-        self.title_frame = tk.Frame(board, pady=10, bg=help.frame_colour)
-        self.player_turn_label = tk.Label(self.title_frame, padx=10, pady=10, text=self.current_player + " turn", font=(help.button_text_font, help.title_size), bg=help.title_colour)
+        self.title_frame = tk.Frame(root, pady=10, bg=help.frame_colour)
+        self.player_turn_label = tk.Label(self.title_frame, padx=10, pady=10, text=self.current_player + "'s turn", font=(help.button_text_font, help.title_size), bg=help.title_colour)
         self.board_widgets = []
         
     def end_game(self) -> None:
         self.game_controller.end_screen()
-
-    def create_board3(self, board):
+        
+    def create_board_frame(self, board) -> tk.Frame:
         board_frame = tk.Frame(board)
         board_frame.place(relx=0.5, rely=.56, anchor="center")
+        return board_frame
 
+    def create_board3(self, board_frame):
         for row in range(3):
             for column in range(3):
                 widget = tk.Button(board_frame, text="", width=6, height=3, font=(self.h.button_text_font, self.h.button_text_size))
@@ -30,10 +33,7 @@ class GameBoard:
                 widget.configure(command=lambda clicked_button=widget: self.player_action(clicked_button))
                 self.board_widgets.append(widget)
 
-    def create_board4(self, board):
-        board_frame = tk.Frame(board)
-        board_frame.place(relx=0.5, rely=.56, anchor="center")
-
+    def create_board4(self, board_frame):
         for row in range(4):
             for column in range(4):
                 widget = tk.Button(board_frame, text="", width=5, height=2, font=(self.h.button_text_font, self.h.button_text_size))
@@ -46,13 +46,14 @@ class GameBoard:
         self.player_turn_label.pack(side="top")
         # create chosen board
         if (chosen_board == "3"):
-            self.create_board3(self.board)
+            self.create_board3(self.board_frame)
         elif (chosen_board == "4"):
-            self.create_board4(self.board)
+            self.create_board4(self.board_frame)
 
     def hide(self):
         self.title_frame.pack_forget()
         self.player_turn_label.pack_forget()
+        self.board_frame.pack_forget()
         for widget in self.board_widgets:
             widget.grid_forget()
             
@@ -69,7 +70,7 @@ class GameBoard:
             if (self.check_winner(self.game_controller.chosen_board_size)):
                 self.game_controller.end_screen()
             self.player_switch()
-            self.player_turn_label.configure(text=self.current_player + " turn")
+            self.player_turn_label.configure(text=self.current_player + "'s turn")
         else:
             messagebox.showwarning("Warning!", "This tile is already taken!")
 
