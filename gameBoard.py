@@ -36,9 +36,9 @@ class GameBoard:
         self.title_frame.pack()
         self.player_turn_label.pack(side="top")
         # create chosen board
-        if chosen_board == "3":
+        if (chosen_board == "3"):
             self.create_board3(self.board)
-        elif chosen_board == "4":
+        elif (chosen_board == "4"):
             self.create_board4(self.board)
 
     def hide(self):
