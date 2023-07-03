@@ -14,7 +14,9 @@ class TicTacToeGame:
         self.mainMenu = MainMenu(self.window, self.h, self)
         self.mainMenu.show()
         self.gameBoard = GameBoard(self.window, self.h, self)
-        self.endScreen = EndScreen(self.window, self.h, self)
+        self.gameBoard.hide()
+        # self.endScreen = EndScreen(self.window, self.h, self)
+        # self.endScreen.hide()
         # game variables
         self.chosen_board_size = ""
         self.chosen_game_mode = ""
@@ -33,14 +35,13 @@ class TicTacToeGame:
             messagebox.showwarning("Warning!", "You have to choose the game board size!")
             return
         self.mainMenu.hide()
-        self.endScreen.hide()
         self.gameBoard.show(self.chosen_board_size)
         return
     
     def end_screen(self) -> None:
         self.gameBoard.hide()
         self.mainMenu.hide()
-        self.endScreen.show()
+        # self.endScreen.show()
 
 if __name__ == "__main__":
     game = TicTacToeGame()
