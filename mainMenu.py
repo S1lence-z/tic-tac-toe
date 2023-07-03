@@ -80,7 +80,7 @@ class MainMenu:
         self.grid3_button.grid_forget()
         self.grid4_button.grid_forget()
         self.start_button_frame.pack_forget()
-        self.start_button.pack_forget()
+        self.start_button.grid_forget()
 
     # action functions to configure what each button does
     def action0(self) -> None:
