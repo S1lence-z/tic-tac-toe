@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 from help import Help
 from mainMenu import MainMenu
 from gameBoard import GameBoard
@@ -23,8 +24,15 @@ class TicTacToeGame:
         self.chosen_game_mode = mode
         
     def start_game(self) -> None:
+        if (self.chosen_game_mode == ""):
+            messagebox.showwarning("Warning", "You have to choose the game mode!")
+            return
+        if (self.chosen_board_size == ""):
+            messagebox.showwarning("Warning", "You have to choose the game board size!")
+            return
         self.mainMenu.hide()
         self.gameBoard.show(self.chosen_board_size)
+        return
     
     def end_screen(self) -> None:
         self.gameBoard.hide()
