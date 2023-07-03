@@ -13,7 +13,7 @@ class GameBoard:
         self.player = help.player
         self.current_player = self.player
         # game board label
-        self.title_frame = tk.Frame(root, pady=10, bg=help.frame_colour)
+        self.title_frame = tk.Frame(root, pady=5, bg=help.frame_colour)
         self.player_turn_label = tk.Label(self.title_frame, padx=10, pady=10, text=self.current_player + "'s turn", font=(help.button_text_font, help.title_size), bg=help.title_colour)
         self.board_widgets = []
         
