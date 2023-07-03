@@ -53,7 +53,7 @@ class MainMenu:
         root.config(menu=bar)
         options_menu = tk.Menu(bar)
         bar.add_cascade(label="Options", menu=options_menu)
-        options_menu.add_command(label="Restart")
+        options_menu.add_command(label="Restart", command=self.game_controller.exit_to_menu)
         options_menu.add_command(label="Exit", command=root.quit)
         
     def show(self) -> None:
