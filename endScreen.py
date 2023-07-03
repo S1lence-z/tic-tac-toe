@@ -4,13 +4,14 @@ from help import Help
 class EndScreen:
     def __init__(self, root: tk, help: Help, game_controller) -> None:
         self.h = help
+        self.game_controller = game_controller
         self.button_frame = self.create_button_frame(root)
         self.winning_message_frame = self.create_title_frame(root)
         self.winning_message = self.create_title_label(self.winning_message_frame)
         # all buttons to be present
         self.restart_with_same_settings_button = self.create_button(self.button_frame, "Restart", self.test)
-        self.exit_to_menu_button = self.create_button(self.button_frame, "Exit To Menu", self.test)
-        self.exit_the_game = self.create_button(self.button_frame, "Exit Game", self.test)
+        self.exit_to_menu_button = self.create_button(self.button_frame, "Exit To Menu", self.exit_to_menu)
+        self.exit_the_game = self.create_button(self.button_frame, "Exit Game", root.quit)
         
     def create_title_frame(self, root) -> None:
         title_frame = tk.Frame(root, pady=10, bg=self.h.frame_colour)
@@ -48,5 +49,8 @@ class EndScreen:
         self.exit_to_menu_button.pack_forget()
         self.exit_the_game.pack_forget()
 
+    def exit_to_menu(self) -> None:
+        self.game_controller.exit_to_menu()
+        
     def test(self) -> None:
         return
