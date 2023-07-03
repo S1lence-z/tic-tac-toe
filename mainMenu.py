@@ -18,8 +18,6 @@ class MainMenu:
         # create a frame and the start button
         self.start_button_frame = self.create_start_button_frame(root)
         self.start_button = self.create_start_button(self.start_button_frame, "START", self.start_game, 1, 1)
-        # variables for the start button
-        self.start_game_status = False
         
     def create_start_button_frame(self, root):
         start_button_frame = tk.Frame(root, padx=10, pady=10, bg=self.h.frame_colour)
