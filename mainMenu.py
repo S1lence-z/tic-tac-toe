@@ -24,7 +24,7 @@ class MainMenu:
         return start_button_frame
     
     def create_start_button(self, frame, text, action, row, column):
-        start_button = tk.Button(frame, width=10, height=5, text=text, bg=self.h.start_button_colour, command=action)
+        start_button = tk.Button(frame, width=7, height=3, text=text, bg=self.h.start_button_colour, command=action)
         start_button.configure(font=(self.h.start_button_text_colour, self.h.button_text_size))
         return start_button
     
@@ -35,7 +35,7 @@ class MainMenu:
         return button_frame
         
     def create_button(self, frame, text, action, row, column):
-        button = tk.Button(frame, width=10, height=5, text=text, bg=self.h.button_colour, command=action)
+        button = tk.Button(frame, width=7, height=3, text=text, bg=self.h.button_colour, command=action)
         button.configure(font=(self.h.button_text_font, self.h.button_text_size))
         return button
         

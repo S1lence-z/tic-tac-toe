@@ -25,7 +25,7 @@ class GameBoard:
 
         for row in range(3):
             for column in range(3):
-                widget = tk.Button(board_frame, text="", width=20, height=10)
+                widget = tk.Button(board_frame, text="", width=6, height=3, font=(self.h.button_text_font, self.h.button_text_size))
                 widget.grid(row=row, column=column)
                 widget.configure(command=lambda clicked_button=widget: self.player_action(clicked_button))
                 self.board_widgets.append(widget)
@@ -36,7 +36,7 @@ class GameBoard:
 
         for row in range(4):
             for column in range(4):
-                widget = tk.Button(board_frame, text="", width=18, height=7)
+                widget = tk.Button(board_frame, text="", width=5, height=2, font=(self.h.button_text_font, self.h.button_text_size))
                 widget.grid(row=row, column=column)
                 widget.configure(command=lambda clicked_button=widget: self.player_action(clicked_button))
                 self.board_widgets.append(widget)

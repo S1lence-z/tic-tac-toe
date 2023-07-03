@@ -11,7 +11,7 @@ class Help:
         # default button state
         self.button_colour = "grey"
         self.button_text_font = "Arial"
-        self.button_text_size = 20
+        self.button_text_size = 30
         self.button_text_colour = "black"
         # inactive button state
         self.button_colour_inactive = "black"
