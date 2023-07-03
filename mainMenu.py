@@ -72,15 +72,18 @@ class MainMenu:
         self.grid4_button.grid(row=1, column=1, pady=5, padx=5)
         
     def hide(self) -> None:
+        # the main menu title
         self.title_frame.pack_forget()
         self.title_label.pack_forget()
-        self.button_frame.pack_forget()
+        # start frame and start button
+        self.start_button_frame.forget()
+        self.start_button.grid_forget()
+        # the frame for other buttons and the buttons themselves
+        self.button_frame.forget()
         self.pvp_button.grid_forget()
         self.pve_button.grid_forget()
         self.grid3_button.grid_forget()
         self.grid4_button.grid_forget()
-        self.start_button_frame.pack_forget()
-        self.start_button.grid_forget()
 
     # action functions to configure what each button does
     def action0(self) -> None:
