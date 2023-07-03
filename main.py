@@ -12,10 +12,10 @@ class TicTacToeGame:
         self.h = Help()
         self.window = AppWindow(self.h)
         self.mainMenu = MainMenu(self.window, self.h, self)
-        self.mainMenu.show()
         self.gameBoard = GameBoard(self.window, self.h, self)
-        self.gameBoard.hide()
         # self.endScreen = EndScreen(self.window, self.h, self)
+        self.mainMenu.show()
+        self.gameBoard.hide()
         # self.endScreen.hide()
         # game variables
         self.chosen_board_size = ""

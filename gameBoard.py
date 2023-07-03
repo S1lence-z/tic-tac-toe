@@ -20,8 +20,8 @@ class GameBoard:
     def end_game(self) -> None:
         self.game_controller.end_screen()
         
-    def create_board_frame(self, board) -> tk.Frame:
-        board_frame = tk.Frame(board)
+    def create_board_frame(self, root) -> tk.Frame:
+        board_frame = tk.Frame(root, bg=self.h.frame_colour)
         board_frame.place(relx=0.5, rely=.56, anchor="center")
         return board_frame
 
@@ -41,13 +41,13 @@ class GameBoard:
                 widget.configure(command=lambda clicked_button=widget: self.player_action(clicked_button))
                 self.board_widgets.append(widget)
 
-    def show(self, chosen_board) -> None:
+    def show(self, chosen_board_size) -> None:
         self.title_frame.pack()
         self.player_turn_label.pack(side="top")
         # create chosen board
-        if (chosen_board == "3"):
+        if (chosen_board_size == "3"):
             self.create_board3(self.board_frame)
-        elif (chosen_board == "4"):
+        elif (chosen_board_size == "4"):
             self.create_board4(self.board_frame)
 
     def hide(self):
