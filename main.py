@@ -3,6 +3,7 @@ from tkinter import messagebox
 from help import Help
 from mainMenu import MainMenu
 from gameBoard import GameBoard
+from endScreen import EndScreen
 from appWindow import AppWindow
 
 class TicTacToeGame:
@@ -13,6 +14,7 @@ class TicTacToeGame:
         self.mainMenu = MainMenu(self.window, self.h, self)
         self.mainMenu.show()
         self.gameBoard = GameBoard(self.window, self.h, self)
+        self.endScreen = EndScreen(self.window, self.h, self)
         # game variables
         self.chosen_board_size = ""
         self.chosen_game_mode = ""
@@ -31,12 +33,14 @@ class TicTacToeGame:
             messagebox.showwarning("Warning!", "You have to choose the game board size!")
             return
         self.mainMenu.hide()
+        self.endScreen.hide()
         self.gameBoard.show(self.chosen_board_size)
         return
     
     def end_screen(self) -> None:
         self.gameBoard.hide()
-        self.mainMenu.show()
+        self.mainMenu.hide()
+        self.endScreen.show()
 
 if __name__ == "__main__":
     game = TicTacToeGame()

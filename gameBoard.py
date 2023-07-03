@@ -67,7 +67,7 @@ class GameBoard:
         if (clicked_button.cget("text") == ""):
             clicked_button.configure(text=self.current_player)
             if (self.check_winner(self.game_controller.chosen_board_size)):
-                messagebox.showinfo("Výhra", "vyhrál jsi more")
+                self.game_controller.end_screen()
             self.player_switch()
             self.player_turn_label.configure(text=self.current_player + " turn")
         else:
