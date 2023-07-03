@@ -11,10 +11,10 @@ class MainMenu:
         self.title_label = self.create_title_label(self.title_frame)        
         # create a frame and buttons to control game settings
         self.button_frame = self.create_button_frame(root)
-        self.pvp_button = self.create_button(self.button_frame, "PvP", self.action0, 0, 0)
-        self.pve_button = self.create_button(self.button_frame, "PvE", self.action1, 0, 1)
-        self.grid3_button = self.create_button(self.button_frame, "3x3", self.action2, 1, 0)
-        self.grid4_button = self.create_button(self.button_frame, "4x4", self.action3, 1, 1)
+        self.pvp_button = self.create_button(self.button_frame, "PvP", self.pvp_mode, 0, 0)
+        self.pve_button = self.create_button(self.button_frame, "PvE", self.pve_mode, 0, 1)
+        self.grid3_button = self.create_button(self.button_frame, "3x3", self.board3_change, 1, 0)
+        self.grid4_button = self.create_button(self.button_frame, "4x4", self.board4_change, 1, 1)
         # create a frame and the start button
         self.start_button_frame = self.create_start_button_frame(root)
         self.start_button = self.create_start_button(self.start_button_frame, "START", self.start_game, 1, 1)
@@ -51,7 +51,6 @@ class MainMenu:
         # main menu window, the little stripe/bar at the top of the page
         bar = tk.Menu(root)
         root.config(menu=bar)
-        
         options_menu = tk.Menu(bar)
         bar.add_cascade(label="Options", menu=options_menu)
         options_menu.add_command(label="Restart")
@@ -86,21 +85,25 @@ class MainMenu:
         self.grid4_button.grid_forget()
 
     # action functions to configure what each button does
-    def action0(self) -> None:
+    def pvp_mode(self) -> None:
         self.pvp_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.pve_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
+        self.game_controller.change_game_mode("PvP")
 
-    def action1(self) -> None:
+    def pve_mode(self) -> None:
         self.pve_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.pvp_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
+        self.game_controller.change_game_mode("PvE")
 
-    def action2(self) -> None:
+    def board3_change(self) -> None:
         self.grid3_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.grid4_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
+        self.game_controller.change_gameBoard_size("3")
 
-    def action3(self) -> None:
+    def board4_change(self) -> None:
         self.grid4_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.grid3_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
+        self.game_controller.change_gameBoard_size("4")
 
     def start_game(self):
         self.game_controller.show_gameBoard()

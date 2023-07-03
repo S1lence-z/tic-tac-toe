@@ -13,8 +13,14 @@ class TicTacToeGame:
         self.mainMenu.show()
         self.gameBoard = GameBoard(self.window, self.h, self)
         # game variables
-        self.chosen_board_size = "4"
-        self.chosen_game_mode = "PvP"
+        self.chosen_board_size = ""
+        self.chosen_game_mode = ""
+    
+    def change_gameBoard_size(self, size: str) -> None:
+        self.chosen_board_size = size
+    
+    def change_game_mode(self, mode: str) -> None:
+        self.chosen_game_mode = mode
         
     def show_gameBoard(self) -> None:
         self.mainMenu.hide()
