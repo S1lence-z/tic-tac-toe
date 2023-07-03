@@ -38,6 +38,7 @@ class GameBoard:
             for column in range(4):
                 widget = tk.Button(board_frame, text="", width=18, height=7)
                 widget.grid(row=row, column=column)
+                widget.configure(command=lambda clicked_button=widget: self.player_action(clicked_button))
                 self.board_widgets.append(widget)
 
     def show(self, chosen_board) -> None:
@@ -66,5 +67,6 @@ class GameBoard:
         if (clicked_button.cget("text") == ""):
             clicked_button.configure(text=self.current_player)
             self.player_switch()
+            self.player_turn_label.configure(text=self.current_player + " turn")
         else:
             messagebox.showwarning("Warning!", "This tile is already taken!")
