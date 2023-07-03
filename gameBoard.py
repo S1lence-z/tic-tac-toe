@@ -10,7 +10,7 @@ class GameBoard:
         self.game_controller = game_controller
         self.board_frame = self.create_board_frame(self.board)
         # specific playe variables
-        self.player = help.player
+        self.player = self.h.player
         self.current_player = self.player
         # game board label
         self.title_frame = tk.Frame(root, pady=5, bg=help.frame_colour)
@@ -78,7 +78,7 @@ class GameBoard:
             if (self.check_draw()):
                 self.game_controller.end_screen(self.h.game_tie_message)
             if (self.check_winner(self.game_controller.chosen_board_size)):
-                self.h.player = self.current_player
+                self.h.final_player = self.h.change_final_player(self.current_player)
                 self.game_controller.end_screen(self.h.player_won_message)
             self.player_switch()
             self.player_turn_label.configure(text=self.current_player + "'s turn")

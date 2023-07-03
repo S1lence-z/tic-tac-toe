@@ -25,8 +25,14 @@ class Help:
         # variables for the game itself
         self.players = ["X", "O"]
         self.player = random.choice(self.players)
+        self.final_player = ""
         self.board3 = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
         self.board4 = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
         # end screen messages
         self.game_tie_message = "It is a tie!"
-        self.player_won_message = f"Player {self.player} has won!"
+        self.player_won_message = f"Player {self.final_player} has won!"
+
+    def change_final_player(self, player_symbol) -> None:
+        self.final_player = player_symbol
+        self.player_won_message = f"Player {self.final_player} has won!"
+        
