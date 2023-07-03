@@ -48,6 +48,15 @@ class EndScreen:
         self.restart_with_same_settings_button.pack_forget()
         self.exit_to_menu_button.pack_forget()
         self.exit_the_game.pack_forget()
+        
+    def destroy_widgets(self):
+        # Destroy all the widgets
+        self.winning_message_frame.destroy()
+        self.winning_message.destroy()
+        self.button_frame.destroy()
+        self.restart_with_same_settings_button.destroy()
+        self.exit_to_menu_button.destroy()
+        self.exit_the_game.destroy()
 
     def exit_to_menu(self) -> None:
         self.game_controller.exit_to_menu()

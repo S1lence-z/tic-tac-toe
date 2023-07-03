@@ -57,6 +57,14 @@ class GameBoard:
         for widget in self.board_widgets:
             widget.grid_forget()
             
+    def destroy_widgets(self):
+        # Destroy all the widgets
+        self.title_frame.destroy()
+        self.player_turn_label.destroy()
+        self.board_frame.destroy()
+        for widget in self.board_widgets:
+            widget.destroy()
+            
     def player_switch(self) -> None:
         if (self.current_player == self.h.players[0]):
             self.current_player = self.h.players[1]

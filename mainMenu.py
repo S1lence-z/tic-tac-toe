@@ -8,7 +8,7 @@ class MainMenu:
         self.create_menu_bar(root)
         # main menu title
         self.title_frame = self.create_title_frame(root)
-        self.title_label = self.create_title_label(self.title_frame)        
+        self.title_label = self.create_title_label(self.title_frame)
         # create a frame and buttons to control game settings
         self.button_frame = self.create_button_frame(root)
         self.pvp_button = self.create_button(self.button_frame, "PvP", self.pvp_mode, 0, 0)
@@ -83,6 +83,18 @@ class MainMenu:
         self.pve_button.grid_forget()
         self.grid3_button.grid_forget()
         self.grid4_button.grid_forget()
+        
+    def destroy_widgets(self) -> None:
+        # Destroy all the widgets
+        self.title_frame.destroy()
+        self.title_label.destroy()
+        self.start_button_frame.destroy()
+        self.start_button.destroy()
+        self.button_frame.destroy()
+        self.pvp_button.destroy()
+        self.pve_button.destroy()
+        self.grid3_button.destroy()
+        self.grid4_button.destroy()
 
     # action functions to configure what each button does
     def pvp_mode(self) -> None:
