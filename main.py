@@ -39,10 +39,10 @@ class TicTacToeGame:
         self.gameBoard.show(self.chosen_board_size)
         return
     
-    def end_screen(self) -> None:
+    def end_screen(self, label_text) -> None:
         self.gameBoard.hide()
         self.mainMenu.hide()
-        self.endScreen.show()
+        self.endScreen.show(label_text)
         
     def restart_with_same_settings(self) -> None:
         # hide previous instances

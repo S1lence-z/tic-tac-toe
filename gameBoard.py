@@ -75,13 +75,21 @@ class GameBoard:
         # check if this tile is not already taken
         if (clicked_button.cget("text") == ""):
             clicked_button.configure(text=self.current_player)
+            if (self.check_draw()):
+                self.game_controller.end_screen(self.h.game_tie_message)
             if (self.check_winner(self.game_controller.chosen_board_size)):
                 self.h.player = self.current_player
-                self.game_controller.end_screen()
+                self.game_controller.end_screen(self.h.player_won_message)
             self.player_switch()
             self.player_turn_label.configure(text=self.current_player + "'s turn")
         else:
             messagebox.showwarning("Warning!", "This tile is already taken!")
+            
+    def check_draw(self) -> bool:
+        for widget in self.board_widgets:
+            if widget.cget("text") == "":
+                return False
+        return True
 
     def check_winner(self, board_size) -> bool:
         if (board_size == "3"):

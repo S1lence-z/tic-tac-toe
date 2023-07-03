@@ -18,7 +18,7 @@ class EndScreen:
         return title_frame
 
     def create_title_label(self, title_frame) -> None:
-        label = tk.Label(title_frame, padx=10, pady=10, text=f"Player {self.h.player} has won!", font=(self.h.title_text_font, self.h.title_size), bg=self.h.title_colour)
+        label = tk.Label(title_frame, padx=10, pady=10, font=(self.h.title_text_font, self.h.title_size), bg=self.h.title_colour)
         return label
 
     def create_button_frame(self, root) -> None:
@@ -30,9 +30,10 @@ class EndScreen:
         button.configure(font=(self.h.button_text_font, self.h.button_text_size))
         return button
 
-    def show(self) -> None:
+    def show(self, label_text) -> None:
         # winning message at the top
         self.winning_message_frame.pack()
+        self.winning_message.configure(text=label_text)
         self.winning_message.pack()
         # buttons
         self.button_frame.pack()

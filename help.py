@@ -27,3 +27,6 @@ class Help:
         self.player = random.choice(self.players)
         self.board3 = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
         self.board4 = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+        # end screen messages
+        self.game_tie_message = "It is a tie!"
+        self.player_won_message = f"Player {self.player} has won!"
