@@ -6,17 +6,18 @@ from appWindow import AppWindow
 
 class TicTacToeGame:
     def __init__(self):
-        # necessary classes and variables
+        # necessary classes
         self.h = Help()
         self.window = AppWindow(self.h)
+        self.mainMenu = MainMenu(self.window, self.h)
+        self.gameBoard = GameBoard(self.window, self.h)
+        # game variables
         self.chosen_board_size = "4"
         self.chosen_game_mode = "PvP"
+        
         # possible game states
         # all_possible_game_states = { mainMenu, inGame, endGame }
         self.current_game_state = "mainMenu"
-        # game windows
-        self.mainMenu = MainMenu(self.window, self.h)
-        self.gameBoard = GameBoard(self.window, self.h)
 
     def gameLoop(self) -> None:
         if self.current_game_state == "mainMenu":
