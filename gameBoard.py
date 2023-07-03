@@ -57,10 +57,10 @@ class GameBoard:
             widget.grid_forget()
             
     def player_switch(self) -> None:
-        if (self.current_player == "X"):
-            self.current_player = "O"
+        if (self.current_player == self.h.players[0]):
+            self.current_player = self.h.players[1]
         else:
-            self.current_player = "X"
+            self.current_player = self.h.players[0]
             
     def player_action(self, clicked_button: tk.Button) -> None:
         # check if this tile is not already taken
