@@ -11,16 +11,16 @@ class EndScreen:
         self.exit_the_game = self.create_button(self.button_frame, "Exit Game", self.test)
 
     def create_button_frame(self, root) -> None:
-        button_frame = tk.Frame(root, padx=10, pady=10, bg=self.h.frame_colour)
-        button_frame.pack(fill=tk.BOTH, expand=True)
+        button_frame = tk.Frame(root, padx=10, pady=120, bg=self.h.frame_colour)
         return button_frame
 
     def create_button(self, frame, text, action):
-        button = tk.Button(frame, width=7, height=3, text=text, bg=self.h.button_colour, command=action)
+        button = tk.Button(frame, width=15, height=1, text=text, bg=self.h.button_colour, command=action)
         button.configure(font=(self.h.button_text_font, self.h.button_text_size))
         return button
 
     def show(self) -> None:
+        self.button_frame.pack()
         self.restart_with_same_settings_button.pack(pady=5)
         self.exit_to_menu_button.pack(pady=5)
         self.exit_the_game.pack(pady=5)
