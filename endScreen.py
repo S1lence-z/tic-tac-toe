@@ -9,7 +9,7 @@ class EndScreen:
         self.winning_message_frame = self.create_title_frame(root)
         self.winning_message = self.create_title_label(self.winning_message_frame)
         # all buttons to be present
-        self.restart_with_same_settings_button = self.create_button(self.button_frame, "Restart", self.test)
+        self.restart_with_same_settings_button = self.create_button(self.button_frame, "Restart", self.restart_with_same_settings)
         self.exit_to_menu_button = self.create_button(self.button_frame, "Exit To Menu", self.exit_to_menu)
         self.exit_the_game = self.create_button(self.button_frame, "Exit Game", root.quit)
         
@@ -61,5 +61,5 @@ class EndScreen:
     def exit_to_menu(self) -> None:
         self.game_controller.exit_to_menu()
         
-    def test(self) -> None:
-        return
+    def restart_with_same_settings(self) -> None:
+        self.game_controller.restart_with_same_settings()

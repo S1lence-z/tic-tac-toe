@@ -44,6 +44,16 @@ class TicTacToeGame:
         self.mainMenu.hide()
         self.endScreen.show()
         
+    def restart_with_same_settings(self) -> None:
+        # hide previous instances
+        self.gameBoard.destroy_widgets()
+        self.endScreen.destroy_widgets()
+        # create new instances and reset chosen variables
+        self.gameBoard = GameBoard(self.window, self.h, self)
+        self.endScreen = EndScreen(self.window, self.h, self)
+        # default show settings
+        self.start_game()
+        
     def exit_to_menu(self) -> None:
         # hide previous instances
         self.mainMenu.destroy_widgets()
@@ -53,12 +63,12 @@ class TicTacToeGame:
         self.mainMenu = MainMenu(self.window, self.h, self)
         self.gameBoard = GameBoard(self.window, self.h, self)
         self.endScreen = EndScreen(self.window, self.h, self)
-        self.chosen_board_size = ""
-        self.chosen_game_mode = ""
         # default show settings
         self.mainMenu.show()
         self.gameBoard.hide()
         self.endScreen.hide()
+        self.chosen_board_size = ""
+        self.chosen_game_mode = ""
 
 if __name__ == "__main__":
     game = TicTacToeGame()
