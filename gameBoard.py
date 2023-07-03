@@ -66,7 +66,61 @@ class GameBoard:
         # check if this tile is not already taken
         if (clicked_button.cget("text") == ""):
             clicked_button.configure(text=self.current_player)
+            if (self.check_winner(self.game_controller.chosen_board_size)):
+                messagebox.showinfo("Výhra", "vyhrál jsi more")
             self.player_switch()
             self.player_turn_label.configure(text=self.current_player + " turn")
         else:
             messagebox.showwarning("Warning!", "This tile is already taken!")
+
+    def check_winner(self, board_size) -> bool:
+        if (board_size == "3"):
+            # Horizontal check
+            for row in range(3):
+                if (self.board_widgets[row * 3]["text"] == self.board_widgets[row * 3 + 1]["text"] == self.board_widgets[row * 3 + 2]["text"] != ""):
+                    return True
+            # Vertical check
+            for column in range(3):
+                if (self.board_widgets[column]["text"] == self.board_widgets[column + 3]["text"] == self.board_widgets[column + 6]["text"] != ""):
+                    return True
+            # Diagonal check
+            if (self.board_widgets[0]["text"] == self.board_widgets[4]["text"] == self.board_widgets[8]["text"] != ""):
+                return True
+            if (self.board_widgets[2]["text"] == self.board_widgets[4]["text"] == self.board_widgets[6]["text"] != ""):
+                return True
+            return False
+        else:
+            # Horizontal check
+            for row in range(4):
+                if (self.board_widgets[row * 4]["text"] == self.board_widgets[row * 4 + 1]["text"] == self.board_widgets[row * 4 + 2]["text"] != ""):
+                    return True
+                if (self.board_widgets[row * 4 + 1]["text"] == self.board_widgets[row * 4 + 2]["text"] == self.board_widgets[row * 4 + 3]["text"] != ""):
+                    return True
+            # Vertical check
+            for column in range(4):
+                if (self.board_widgets[column]["text"] == self.board_widgets[column + 4]["text"] == self.board_widgets[column + 8]["text"] != ""):
+                    return True
+                if (self.board_widgets[column + 4]["text"] == self.board_widgets[column + 8]["text"] == self.board_widgets[column + 12]["text"] != ""):
+                    return True
+            # Diagonal check
+            if (self.board_widgets[0]["text"] == self.board_widgets[5]["text"] == self.board_widgets[10]["text"] != ""):
+                return True
+            if (self.board_widgets[1]["text"] == self.board_widgets[6]["text"] == self.board_widgets[11]["text"] != ""):
+                return True
+            if (self.board_widgets[2]["text"] == self.board_widgets[7]["text"] == self.board_widgets[12]["text"] != ""):
+                return True
+            if (self.board_widgets[3]["text"] == self.board_widgets[6]["text"] == self.board_widgets[9]["text"] != ""):
+                return True
+            if (self.board_widgets[4]["text"] == self.board_widgets[7]["text"] == self.board_widgets[10]["text"] != ""):
+                return True
+            if (self.board_widgets[5]["text"] == self.board_widgets[8]["text"] == self.board_widgets[11]["text"] != ""):
+                return True
+            if (self.board_widgets[6]["text"] == self.board_widgets[9]["text"] == self.board_widgets[12]["text"] != ""):
+                return True
+            if (self.board_widgets[7]["text"] == self.board_widgets[10]["text"] == self.board_widgets[13]["text"] != ""):
+                return True
+            if (self.board_widgets[8]["text"] == self.board_widgets[11]["text"] == self.board_widgets[14]["text"] != ""):
+                return True
+            if (self.board_widgets[9]["text"] == self.board_widgets[12]["text"] == self.board_widgets[15]["text"] != ""):
+                return True
+            return False
