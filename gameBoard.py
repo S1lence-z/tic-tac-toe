@@ -137,11 +137,7 @@ class GameBoard:
         """
         if clicked_button.cget("text") == "":
             clicked_button.configure(text=self.current_player)
-            if (self.check_draw()):
-                self.game_controller.end_screen(self.h.game_tie_message)
-            if (self.check_winner(self.game_controller.chosen_board_size)):
-                self.h.final_player = self.h.change_final_player(self.current_player)
-                self.game_controller.end_screen(self.h.player_won_message)
+            self.check_end_game()
             self.switch_player()
             self.change_current_player_label()
         else:
@@ -149,6 +145,13 @@ class GameBoard:
             
     def change_current_player_label(self) -> None:
         self.player_turn_label.configure(text=self.current_player + "'s turn")
+        
+    def check_end_game(self) -> None:
+        if (self.check_draw()):
+                self.game_controller.end_screen(self.h.game_tie_message)
+        if (self.check_winner(self.game_controller.chosen_board_size)):
+            self.h.final_player = self.h.change_final_player(self.current_player)
+            self.game_controller.end_screen(self.h.player_won_message)
             
     def check_draw(self) -> bool:
         """
