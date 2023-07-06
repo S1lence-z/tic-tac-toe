@@ -143,9 +143,12 @@ class GameBoard:
                 self.h.final_player = self.h.change_final_player(self.current_player)
                 self.game_controller.end_screen(self.h.player_won_message)
             self.switch_player()
-            self.player_turn_label.configure(text=self.current_player + "'s turn")
+            self.change_current_player_label()
         else:
             messagebox.showwarning("Warning!", "This tile is already taken!")
+            
+    def change_current_player_label(self) -> None:
+        self.player_turn_label.configure(text=self.current_player + "'s turn")
             
     def check_draw(self) -> bool:
         """
