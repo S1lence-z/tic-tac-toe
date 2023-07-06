@@ -119,7 +119,7 @@ class GameBoard:
         for widget in self.board_widgets:
             widget.destroy()
             
-    def player_switch(self) -> None:
+    def switch_player(self) -> None:
         """
         Switches the current player.
         """
@@ -142,7 +142,7 @@ class GameBoard:
             if (self.check_winner(self.game_controller.chosen_board_size)):
                 self.h.final_player = self.h.change_final_player(self.current_player)
                 self.game_controller.end_screen(self.h.player_won_message)
-            self.player_switch()
+            self.switch_player()
             self.player_turn_label.configure(text=self.current_player + "'s turn")
         else:
             messagebox.showwarning("Warning!", "This tile is already taken!")
