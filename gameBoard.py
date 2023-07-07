@@ -144,9 +144,15 @@ class GameBoard:
             messagebox.showwarning("Warning!", "This tile is already taken!")
             
     def change_current_player_label(self) -> None:
+        """
+        Changes the current player which is displayed on the player label.
+        """
         self.player_turn_label.configure(text=self.current_player + "'s turn")
         
     def check_end_game(self) -> None:
+        """
+        Checks if the game has ended in any way and adjusts the end screen accordingly.
+        """
         if (self.check_draw()):
                 self.game_controller.end_screen(self.h.game_tie_message)
         if (self.check_winner(self.game_controller.chosen_board_size)):
