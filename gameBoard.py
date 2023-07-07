@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from help import Help
+from minimaxAlg import minimax
 
 class GameBoard:
     """
@@ -143,7 +144,27 @@ class GameBoard:
             messagebox.showwarning("Warning!", "This tile is already taken!")
             
     def pve_action(self) -> None:
-        return
+        """
+        Performs the computer's action using the Minimax algorithm.
+        """
+        best_score = float("-inf")
+        best_move = None
+        
+        for widget in self.board_widgets:
+            if widget.cget("text") == "":
+                widget.configure(text=self.h.player2)
+                score = minimax(self.board_widgets, 0, False)
+                widget.configure(text="")
+                
+                if score > best_score:
+                    best_score = score
+                    best_move = widget
+                    
+        if best_move:
+            best_move.configure(text=self.h.player2)
+            self.check_end_game()
+            self.switch_player()
+            self.change_current_player_label()
             
     def change_current_player_label(self) -> None:
         """
