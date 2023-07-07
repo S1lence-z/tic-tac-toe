@@ -153,7 +153,7 @@ class GameBoard:
         for widget in self.board_widgets:
             if widget.cget("text") == "":
                 widget.configure(text=self.h.player2)
-                score = minimax(self.board_widgets, 0, False)
+                score = minimax(self, 0, False)
                 widget.configure(text="")
                 
                 if score > best_score:

@@ -1,4 +1,4 @@
-# in this file I will be developing the minimax algorithm for my TicTacToe game
+from gameBoard import GameBoard
 
-def minimax() -> None:
-    return
+def minimax(gb: GameBoard, depth: int, is_maximizing: bool):
+    return 1
