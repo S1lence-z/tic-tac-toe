@@ -67,7 +67,7 @@ class GameBoard:
             for column in range(3):
                 widget = tk.Button(board_frame, text="", width=6, height=3, font=(self.h.button_text_font, self.h.button_text_size))
                 widget.grid(row=row, column=column)
-                widget.configure(command=lambda clicked_button=widget: self.player_action(clicked_button))
+                widget.configure(command=lambda clicked_button=widget: self.pvp_action(clicked_button))
                 self.board_widgets.append(widget)
 
     def create_board4(self, board_frame):
@@ -81,7 +81,7 @@ class GameBoard:
             for column in range(4):
                 widget = tk.Button(board_frame, text="", width=5, height=2, font=(self.h.button_text_font, self.h.button_text_size))
                 widget.grid(row=row, column=column)
-                widget.configure(command=lambda clicked_button=widget: self.player_action(clicked_button))
+                widget.configure(command=lambda clicked_button=widget: self.pvp_action(clicked_button))
                 self.board_widgets.append(widget)
 
     def show(self, chosen_board_size) -> None:
@@ -127,7 +127,7 @@ class GameBoard:
         else:
             self.current_player = self.h.player1
             
-    def player_action(self, clicked_button: tk.Button) -> None:
+    def pvp_action(self, clicked_button: tk.Button) -> None:
         """
         Performs the player's action when a button on the game board is clicked.
         
@@ -141,6 +141,9 @@ class GameBoard:
             self.change_current_player_label()
         else:
             messagebox.showwarning("Warning!", "This tile is already taken!")
+            
+    def pve_action(self) -> None:
+        return
             
     def change_current_player_label(self) -> None:
         """
