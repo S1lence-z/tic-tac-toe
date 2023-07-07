@@ -44,7 +44,7 @@ class Help:
         
         # end screen messages (presets)
         self.game_tie_message = "It is a tie!"
-        self.player_won_message = f"Player {self.winning_player} has won!"
+        self.player_won_message = ""
         
     def set_second_player(self, first_player) -> str:
         if (first_player == self.player_symbols[0]):
