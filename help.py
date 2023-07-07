@@ -41,6 +41,7 @@ class Help:
         self.winning_player = ""
         self.board3 = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
         self.board4 = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+        self.current_game_mode = ""
         
         # end screen messages (presets)
         self.game_tie_message = "It is a tie!"
@@ -70,3 +71,6 @@ class Help:
         """
         self.winning_player = player_symbol
         self.player_won_message = f"Player {self.winning_player} has won!"
+        
+    def set_game_mode(self, chosen_mode) -> None:
+        self.current_game_mode = chosen_mode

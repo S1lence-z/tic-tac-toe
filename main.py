@@ -57,12 +57,13 @@ class TicTacToeGame:
 
     def change_game_mode(self, mode: str) -> None:
         """
-        Changes the game mode.
+        Changes the game mode and sets the current mode in the help class.
 
         Args:
             mode (str): The new game mode.
         """
         self.chosen_game_mode = mode
+        self.h.set_game_mode(self.chosen_game_mode)
 
     def start_game(self) -> None:
         """

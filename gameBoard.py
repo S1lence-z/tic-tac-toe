@@ -68,7 +68,7 @@ class GameBoard:
             for column in range(3):
                 widget = tk.Button(board_frame, text="", width=6, height=3, font=(self.h.button_text_font, self.h.button_text_size))
                 widget.grid(row=row, column=column)
-                widget.configure(command=lambda clicked_button=widget: self.pvp_action(clicked_button))
+                widget.configure(command=lambda clicked_button=widget: self.game_button_action(clicked_button))
                 self.board_widgets.append(widget)
 
     def create_board4(self, board_frame):
@@ -82,7 +82,7 @@ class GameBoard:
             for column in range(4):
                 widget = tk.Button(board_frame, text="", width=5, height=2, font=(self.h.button_text_font, self.h.button_text_size))
                 widget.grid(row=row, column=column)
-                widget.configure(command=lambda clicked_button=widget: self.pvp_action(clicked_button))
+                widget.configure(command=lambda clicked_button=widget: self.game_button_action(clicked_button))
                 self.board_widgets.append(widget)
 
     def show(self, chosen_board_size) -> None:
@@ -137,9 +137,6 @@ class GameBoard:
         """
         if clicked_button.cget("text") == "":
             clicked_button.configure(text=self.current_player)
-            self.check_end_game()
-            self.switch_player()
-            self.change_current_player_label()
         else:
             messagebox.showwarning("Warning!", "This tile is already taken!")
             
@@ -166,21 +163,40 @@ class GameBoard:
             self.switch_player()
             self.change_current_player_label()
             
+    def game_button_action(self, clicked_button) -> None:
+        if (self.h.current_game_mode == "PvP"):
+            self.pvp_action(clicked_button)
+            self.check_end_game()
+            self.switch_player()
+            self.change_current_player_label()
+        else:   # self.h.current_game_mode == "PvE"
+            if (self.current_player == self.h.player1):
+                self.pvp_action(clicked_button)
+                if self.check_end_game():
+                    return
+                self.switch_player()
+                self.change_current_player_label()
+                self.pve_action()
+            
     def change_current_player_label(self) -> None:
         """
         Changes the current player which is displayed on the player label.
         """
         self.player_turn_label.configure(text=self.current_player + "'s turn")
         
-    def check_end_game(self) -> None:
+    def check_end_game(self) -> bool:
         """
         Checks if the game has ended in any way and adjusts the end screen accordingly.
         """
         if (self.check_draw()):
-                self.game_controller.end_screen(self.h.game_tie_message)
+            self.game_controller.end_screen(self.h.game_tie_message)
+            return True
         if (self.check_winner(self.game_controller.chosen_board_size)):
             self.h.winning_player = self.h.set_winning_player(self.current_player)
             self.game_controller.end_screen(self.h.player_won_message)
+            return True
+        
+        return False
             
     def check_draw(self) -> bool:
         """
