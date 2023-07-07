@@ -35,8 +35,9 @@ class Help:
         self.start_button_text_colour = "black"
         
         # variables for the game itself
-        self.players = ["X", "O"]
-        self.player = random.choice(self.players)
+        self.player_symbols = ["X", "O"]
+        self.player1 = random.choice(self.player_symbols)
+        self.player2 = self.set_second_player(self.player1)
         self.winning_player = ""
         self.board3 = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
         self.board4 = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
@@ -44,6 +45,12 @@ class Help:
         # end screen messages (presets)
         self.game_tie_message = "It is a tie!"
         self.player_won_message = f"Player {self.winning_player} has won!"
+        
+    def set_second_player(self, first_player) -> str:
+        if (first_player == self.player_symbols[0]):
+            return self.player_symbols[1]
+        else:
+            return self.player_symbols[0]            
 
     def set_winning_player(self, player_symbol) -> None:
         """

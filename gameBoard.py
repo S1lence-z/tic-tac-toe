@@ -31,7 +31,7 @@ class GameBoard:
         self.board = root
         self.game_controller = game_controller
         self.board_frame = self.create_board_frame(self.board)
-        self.player = self.h.player
+        self.player = self.h.player1
         self.current_player = self.player
         self.title_frame = tk.Frame(root, pady=5, bg=help.frame_colour)
         self.player_turn_label = tk.Label(self.title_frame, padx=10, pady=10, text=self.current_player + "'s turn", font=(help.button_text_font, help.title_size), bg=help.title_colour)
@@ -123,10 +123,10 @@ class GameBoard:
         """
         Switches the current player.
         """
-        if self.current_player == self.h.players[0]:
-            self.current_player = self.h.players[1]
+        if self.current_player == self.h.player_symbols[0]:
+            self.current_player = self.h.player_symbols[1]
         else:
-            self.current_player = self.h.players[0]
+            self.current_player = self.h.player_symbols[0]
             
     def player_action(self, clicked_button: tk.Button) -> None:
         """
