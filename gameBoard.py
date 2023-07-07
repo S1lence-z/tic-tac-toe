@@ -156,7 +156,7 @@ class GameBoard:
         if (self.check_draw()):
                 self.game_controller.end_screen(self.h.game_tie_message)
         if (self.check_winner(self.game_controller.chosen_board_size)):
-            self.h.final_player = self.h.change_final_player(self.current_player)
+            self.h.winning_player = self.h.set_winning_player(self.current_player)
             self.game_controller.end_screen(self.h.player_won_message)
             
     def check_draw(self) -> bool:
