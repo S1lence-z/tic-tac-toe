@@ -47,10 +47,19 @@ class Help:
         self.player_won_message = ""
         
     def set_second_player(self, first_player) -> str:
+        """
+        Sets the second player based on the first player.
+
+        Args:
+            first_player (str): The symbol of the first player.
+
+        Returns:
+            str: The symbol of the second player.
+        """
         if (first_player == self.player_symbols[0]):
             return self.player_symbols[1]
         else:
-            return self.player_symbols[0]            
+            return self.player_symbols[0]
 
     def set_winning_player(self, player_symbol) -> None:
         """
