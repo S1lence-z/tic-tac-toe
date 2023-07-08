@@ -128,7 +128,7 @@ class GameBoard:
         else:
             self.current_player = self.h.player1
             
-    def pvp_action(self, clicked_button: tk.Button) -> None:
+    def pvp_action(self, clicked_button: tk.Button) -> bool:
         """
         Performs the player's action when a button on the game board is clicked.
         
@@ -137,8 +137,10 @@ class GameBoard:
         """
         if clicked_button.cget("text") == "":
             clicked_button.configure(text=self.current_player)
+            return True
         else:
             messagebox.showwarning("Warning!", "This tile is already taken!")
+            return False
             
     def pve_action(self) -> None:
         """
@@ -167,17 +169,18 @@ class GameBoard:
             self.check_end_game()
             self.switch_player()
             self.change_current_player_label()
-        else:   # self.h.current_game_mode == "PvE"
+        else:
             if (self.current_player == self.h.player1):
-                self.pvp_action(clicked_button)
-                if self.check_end_game():
-                    return
-                self.switch_player()
-                self.change_current_player_label()
-                self.pve_action() # ai makes a move
-                self.check_end_game()
-                self.switch_player()
-                self.change_current_player_label()
+                may_continue = self.pvp_action(clicked_button)
+                if may_continue:
+                    if self.check_end_game():
+                        return
+                    self.switch_player()
+                    self.change_current_player_label()
+                    self.pve_action()
+                    self.check_end_game()
+                    self.switch_player()
+                    self.change_current_player_label()
 
     def change_current_player_label(self) -> None:
         """
