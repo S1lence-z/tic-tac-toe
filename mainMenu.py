@@ -14,16 +14,28 @@ class MainMenu:
             help (Help): An instance of the Help class for managing game settings and messages.
             game_controller (object): The game controller object responsible for controlling the game flow.
         """
+        
+        # Initialize instance variables
         self.h = help
         self.game_controller = game_controller
+        
+        # Create and set up the menu bar
         self.create_menu_bar(root)
+        
+        # Create and set up the title frame and label
         self.title_frame = self.create_title_frame(root)
         self.title_label = self.create_title_label(self.title_frame)
+        
+        # Create and set up the button frame
         self.button_frame = self.create_button_frame(root)
+        
+        # Create and set up the buttons for different game modes and board sizes
         self.pvp_button = self.create_button(self.button_frame, "PvP", self.pvp_mode, 0, 0)
         self.pve_button = self.create_button(self.button_frame, "PvE", self.pve_mode, 0, 1)
         self.grid3_button = self.create_button(self.button_frame, "3x3", self.board3_change, 1, 0)
         self.grid5_button = self.create_button(self.button_frame, "5x5", self.board5_change, 1, 1)
+        
+        # Create and set up the start button frame and start button
         self.start_button_frame = self.create_start_button_frame(root)
         self.start_button = self.create_start_button(self.start_button_frame, "START", self.start_game, 1, 1)
         
@@ -135,10 +147,13 @@ class MainMenu:
         """
         Show the main menu and its widgets.
         """
+        # Display the title and start button frame
         self.title_frame.pack()
         self.title_label.pack()
         self.start_button_frame.place(relx=.65, rely=.4)
         self.start_button.grid(row=1, column=1, pady=5, padx=5)
+        
+        # Display the button frame and buttons for game modes and board sizes
         self.button_frame.place(relx=0.33, rely=.55, anchor="center")
         self.pvp_button.grid(row=0, column=0, pady=5, padx=5)
         self.pve_button.grid(row=0, column=1, pady=5, padx=5)
@@ -149,10 +164,13 @@ class MainMenu:
         """
         Hide the main menu and its widgets.
         """
+        # Hide the title and start button frame
         self.title_frame.pack_forget()
         self.title_label.pack_forget()
         self.start_button_frame.forget()
         self.start_button.grid_forget()
+        
+        # Hide the button frame and buttons for game modes and board sizes
         self.button_frame.forget()
         self.pvp_button.grid_forget()
         self.pve_button.grid_forget()
@@ -163,6 +181,7 @@ class MainMenu:
         """
         Destroy all the widgets in the main menu.
         """
+        # Destroy all the widgets in the main menu
         self.title_frame.destroy()
         self.title_label.destroy()
         self.start_button_frame.destroy()
@@ -177,6 +196,7 @@ class MainMenu:
         """
         Set the game mode to Player vs Player (PvP).
         """
+        # Configure the buttons for PvP mode and update the game controller
         self.pvp_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.pve_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
         self.game_controller.change_game_mode("PvP")
@@ -185,6 +205,7 @@ class MainMenu:
         """
         Set the game mode to Player vs Environment (PvE).
         """
+        # Configure the buttons for PvE mode and update the game controller
         self.pve_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.pvp_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
         self.game_controller.change_game_mode("PvE")
@@ -193,6 +214,7 @@ class MainMenu:
         """
         Change the game board size to 3x3.
         """
+        # Configure the buttons for 3x3 board size and update the game controller
         self.grid3_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.grid5_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
         self.game_controller.change_gameBoard_size("3")
@@ -201,6 +223,7 @@ class MainMenu:
         """
         Change the game board size to 5x5.
         """
+        # Configure the buttons for 5x5 board size and update the game controller
         self.grid5_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.grid3_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
         self.game_controller.change_gameBoard_size("5")
