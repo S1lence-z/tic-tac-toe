@@ -165,10 +165,11 @@ class GameBoard:
             
     def game_button_action(self, clicked_button) -> None:
         if (self.h.current_game_mode == "PvP"):
-            self.pvp_action(clicked_button)
-            self.check_end_game()
-            self.switch_player()
-            self.change_current_player_label()
+            may_continue = self.pvp_action(clicked_button)
+            if may_continue:
+                self.check_end_game()
+                self.switch_player()
+                self.change_current_player_label()
         else:
             if (self.current_player == self.h.player1):
                 may_continue = self.pvp_action(clicked_button)
