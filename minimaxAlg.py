@@ -19,7 +19,7 @@ def get_winner(board: list[str], board_size: str) -> str:
         if "" not in board:
             return "tie"
         
-        return "nothing"
+        return None
 
 
 def is_draw(board: list[str]) -> bool:
@@ -39,7 +39,7 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool):
     }
     
     winner = get_winner(board,  gameBoard_class.game_controller.chosen_board_size)
-    if winner != "nothing":
+    if winner != None:
         return scores.get(winner)
     elif is_draw(board):
         return scores.get("tie")
