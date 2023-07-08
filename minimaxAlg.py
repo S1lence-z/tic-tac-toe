@@ -1,8 +1,18 @@
-# my minimax algorithm
 import tkinter as tk
 
 def get_winner(board: list[str], board_size: str) -> str:
+    """
+    Determines the winner of the tic-tac-toe game based on the current board configuration.
+
+    Args:
+        board (list[str]): The current state of the tic-tac-toe board.
+        board_size (str): The size of the tic-tac-toe board (either "3" or "5").
+
+    Returns:
+        str: The winner of the game ("X" or "O") or "tie" for a tie game. If the game is not yet over, returns None.
+    """
     if board_size == "3":
+        # Define the winning combinations for a 3x3 board
         winning_combinations = [
             # Rows
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -12,16 +22,20 @@ def get_winner(board: list[str], board_size: str) -> str:
             [0, 4, 8], [2, 4, 6]
         ]
         
+        # Check each winning combination to see if any player has won
         for combination in winning_combinations:
             if board[combination[0]] == board[combination[1]] == board[combination[2]] != "":
                 return board[combination[0]]
         
+        # If there are no empty spaces left on the board, it's a tie
         if "" not in board:
             return "tie"
         
+        # No winner yet
         return None
     
-    elif board == "5":
+    elif board_size == "5":
+        # Define the winning combinations for a 5x5 board
         winning_combinations = [
             # Rows
             [0, 1, 2, 3], [1, 2, 3, 4], [5, 6, 7, 8], [6, 7, 8, 9],
@@ -34,16 +48,33 @@ def get_winner(board: list[str], board_size: str) -> str:
             [0, 6, 12, 18], [6, 12, 18, 24], [1, 7, 13, 19], [5, 11, 17, 23], [4, 8, 12, 16], [8, 12, 16, 20], [3, 7, 11, 15], [9, 13, 17, 21]
         ]
 
+        # Check each winning combination to see if any player has won
         for combination in winning_combinations:
             if board[combination[0]] == board[combination[1]] == board[combination[2]] == board[combination[3]] != "":
                 return board[combination[0]]
 
+        # If there are no empty spaces left on the board, it's a tie
         if "" not in board:
             return "tie"
 
+        # No winner yet
         return None
 
 def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: float, beta: float):
+    """
+    Implementation of the minimax algorithm with alpha-beta pruning to find the best move for the AI player.
+
+    Args:
+        gameBoard_class: An instance of the game board class.
+        board (list[str]): The current state of the tic-tac-toe board.
+        depth (int): The current depth of the minimax search tree.
+        is_maximizing (bool): Indicates whether it's the maximizing player's turn or not.
+        alpha (float): The alpha value for alpha-beta pruning.
+        beta (float): The beta value for alpha-beta pruning.
+
+    Returns:
+        float: The best score for the current board state.
+    """
     human_player = gameBoard_class.h.player1
     ai_player = gameBoard_class.h.player2
     
@@ -54,7 +85,7 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: floa
     }
     
     winner = get_winner(board, gameBoard_class.game_controller.chosen_board_size)
-    if winner != None:
+    if winner is not None:
         return scores.get(winner)
 
     if is_maximizing:
