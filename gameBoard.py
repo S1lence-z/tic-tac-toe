@@ -134,6 +134,9 @@ class GameBoard:
         
         Args:
             clicked_button: The button that was clicked.
+            
+        Returns:
+            True if the action was performed successfully, False otherwise.
         """
         if clicked_button.cget("text") == "":
             clicked_button.configure(text=self.current_player)
@@ -164,6 +167,12 @@ class GameBoard:
             best_move.configure(text=self.h.player2)
             
     def game_button_action(self, clicked_button) -> None:
+        """
+        Handles the game button action when a button on the game board is clicked.
+        
+        Args:
+            clicked_button: The button that was clicked.
+        """
         if (self.h.current_game_mode == "PvP"):
             may_continue = self.pvp_action(clicked_button)
             if may_continue:
@@ -192,6 +201,9 @@ class GameBoard:
     def check_end_game(self) -> bool:
         """
         Checks if the game has ended in any way and adjusts the end screen accordingly.
+        
+        Returns:
+            True if the game has ended, False otherwise.
         """
         if (self.check_winner(self.board_widgets, self.game_controller.chosen_board_size)):
             self.h.winning_player = self.h.set_winning_player(self.current_player)
