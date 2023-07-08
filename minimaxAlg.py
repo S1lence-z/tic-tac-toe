@@ -35,7 +35,7 @@ def get_winner(board: list[str], board_size: str) -> str:
         ]
 
         for combination in winning_combinations:
-            if all(board[i] == board[combination[0]] for i in combination) and board[combination[0]] != "":
+            if board[combination[0]] == board[combination[1]] == board[combination[2]] == board[combination[3]] != "":
                 return board[combination[0]]
 
         if "" not in board:
