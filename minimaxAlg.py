@@ -20,13 +20,28 @@ def get_winner(board: list[str], board_size: str) -> str:
             return "tie"
         
         return None
+    
+    elif board == "5":
+        winning_combinations = [
+            # Rows
+            [0, 1, 2, 3], [1, 2, 3, 4], [5, 6, 7, 8], [6, 7, 8, 9],
+            [10, 11, 12, 13], [11, 12, 13, 14], [15, 16, 17, 18], [16, 17, 18, 19], [20, 21, 22, 23],
+            [21, 22, 23, 24],
+            # Columns
+            [0, 5, 10, 15], [5, 10, 15, 20], [1, 6, 11, 16], [6, 11, 16, 21], [2, 7, 12, 17], [7, 12, 17, 22],
+            [3, 8, 13, 18], [8, 13, 18, 23], [4, 9, 14, 19], [9, 14, 19, 24],
+            # Diagonals
+            [0, 6, 12, 18], [6, 12, 18, 24], [1, 7, 13, 19], [5, 11, 17, 23], [4, 8, 12, 16], [8, 12, 16, 20], [3, 7, 11, 15], [9, 13, 17, 21]
+        ]
 
+        for combination in winning_combinations:
+            if all(board[i] == board[combination[0]] for i in combination) and board[combination[0]] != "":
+                return board[combination[0]]
 
-def is_draw(board: list[str]) -> bool:
-    for text in board:
-        if text == "":
-            return False
-    return True
+        if "" not in board:
+            return "tie"
+
+        return None
 
 def minimax(gameBoard_class, board, depth: int, is_maximizing: bool):
     human_player = gameBoard_class.h.player1
@@ -41,8 +56,6 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool):
     winner = get_winner(board,  gameBoard_class.game_controller.chosen_board_size)
     if winner != None:
         return scores.get(winner)
-    elif is_draw(board):
-        return scores.get("tie")
 
     if is_maximizing:
         best_score = float("-inf")
@@ -51,9 +64,6 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool):
                 board[i] = ai_player
                 score = minimax(gameBoard_class, board, depth + 1, not is_maximizing)
                 board[i] = ""
-                if score == None or best_score == None:
-                    print(board)
-                    print(score, best_score)
                 best_score = max(score, best_score)
         return best_score
     else:
@@ -63,9 +73,5 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool):
                 board[i] = human_player
                 score = minimax(gameBoard_class, board, depth + 1, not is_maximizing)
                 board[i] = ""
-                if score == None or best_score == None:
-                    board[i] = human_player
-                    print(board)
-                    print(score, best_score)
                 best_score = min(score, best_score)
         return best_score
