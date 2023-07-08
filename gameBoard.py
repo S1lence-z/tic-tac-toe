@@ -153,7 +153,7 @@ class GameBoard:
         for i in range(len(widgets_copy)):
             if widgets_copy[i] == "":
                 widgets_copy[i] = self.h.player2
-                score = minimax(self, widgets_copy, 0, False)
+                score = minimax(self, widgets_copy, 0, False, float("-inf"), float("inf"))
                 widgets_copy[i] = ""
                 
                 if score > best_score:

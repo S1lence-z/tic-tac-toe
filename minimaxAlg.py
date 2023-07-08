@@ -43,7 +43,7 @@ def get_winner(board: list[str], board_size: str) -> str:
 
         return None
 
-def minimax(gameBoard_class, board, depth: int, is_maximizing: bool):
+def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: float, beta: float):
     human_player = gameBoard_class.h.player1
     ai_player = gameBoard_class.h.player2
     
@@ -62,16 +62,22 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool):
         for i in range(len(board)):
             if board[i] == "":
                 board[i] = ai_player
-                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing)
+                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing, alpha, beta)
                 board[i] = ""
                 best_score = max(score, best_score)
+                alpha = max(alpha, best_score)
+                if beta <= alpha:
+                    break
         return best_score
     else:
         best_score = float("inf")
         for i in range(len(board)):
             if board[i] == "":
                 board[i] = human_player
-                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing)
+                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing, alpha, beta)
                 board[i] = ""
                 best_score = min(score, best_score)
+                beta = min(beta, best_score)
+                if beta <= alpha:
+                    break
         return best_score
