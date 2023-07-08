@@ -1,80 +1,82 @@
 # my minimax algorithm
 import tkinter as tk
 
-def get_winner(board_widgets: tk.Button, board_size) -> str:
+def get_winner(board: list[str], board_size: str) -> str:
     if board_size == "3":
         # Horizontal check
         for row in range(3):
-            if (board_widgets[row * 3] == 
-                board_widgets[row * 3 + 1] == 
-                board_widgets[row * 3 + 2] != ""
+            if (board[row * 3] == 
+                board[row * 3 + 1] == 
+                board[row * 3 + 2] != ""
                 ):
-                return board_widgets[row]
+                return board[row]
         # Vertical check
         for column in range(3):
-            if (board_widgets[column] == 
-                board_widgets[column + 3] == 
-                board_widgets[column + 6] != ""
+            if (board[column] == 
+                board[column + 3] == 
+                board[column + 6] != ""
                 ):
-                return board_widgets[column]
+                return board[column]
         # Diagonal check
-        if (board_widgets[0] == 
-            board_widgets[4] == 
-            board_widgets[8] != ""
+        if (board[0] == 
+            board[4] == 
+            board[8] != ""
             ):
-            return board_widgets[0]
-        if (board_widgets[2] == 
-            board_widgets[4] == 
-            board_widgets[6] != ""
+            return board[0]
+        if (board[2] == 
+            board[4] == 
+            board[6] != ""
             ):
-            return board_widgets[2]
-        return None
+            return board[2]
+        return "nothing"
 
-def is_draw(board: list) -> bool:
+def is_draw(board: list[str]) -> bool:
     for text in board:
         if text == "":
             return False
     return True
 
-def convert_to_board_widgets(board: list[str], widgets: list[tk.Button]) -> list[tk.Button]:
-    for i in range(len(board)):
-        widgets[i].configure(text=board[i])
-    return widgets
-
-def minimax(gameBoard_class, widgets, depth: int, is_maximizing: bool):
-    board = [widget.cget("text") for widget in widgets]
+def minimax(gameBoard_class, board, depth: int, is_maximizing: bool):
+    human_player = gameBoard_class.h.player1
+    ai_player = gameBoard_class.h.player2
     
     scores = {
-        gameBoard_class.h.player1: -1,
-        gameBoard_class.h.player2: 1,
+        human_player: -1,
+        ai_player: 1,
         "tie": 0
     }
-
-    if get_winner(board, gameBoard_class.game_controller.chosen_board_size):
-        if is_maximizing:
-            return scores[gameBoard_class.h.player2]
-        else:
-            return scores[gameBoard_class.h.player1]
+    
+    winner = get_winner(board,  gameBoard_class.game_controller.chosen_board_size)
+    if winner != "nothing":
+        # i have to return -1 as a default value, it does not work for this case
+        # ['O', 'X', '', 'O', 'O', '', 'X', 'X', 'X']
+        # for this case the returned score by the minimax functino is None!
+        # it also does not work when the human player starts in the middle
+        return scores.get(winner, -1)
     elif is_draw(board):
-        return scores["tie"]
+        return scores.get("tie", -1)
 
     if is_maximizing:
         best_score = float("-inf")
         for i in range(len(board)):
             if board[i] == "":
-                board[i] = gameBoard_class.h.player2
-                converted_widgets = convert_to_board_widgets(board, widgets)
-                score = minimax(gameBoard_class, converted_widgets, depth + 1, False)
+                board[i] = ai_player
+                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing)
                 board[i] = ""
+                if score == None or best_score == None:
+                    print(score, best_score)
                 best_score = max(score, best_score)
         return best_score
     else:
         best_score = float("inf")
         for i in range(len(board)):
             if board[i] == "":
-                board[i] = gameBoard_class.h.player1
-                converted_widgets = convert_to_board_widgets(board, widgets)
-                score = minimax(gameBoard_class, converted_widgets, depth + 1, True)
+                board[i] = human_player
+                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing)
                 board[i] = ""
+                if score == None or best_score == None:
+                    board[i] = human_player
+                    print(board)
+                    print(score, best_score)
                 best_score = min(score, best_score)
         return best_score
