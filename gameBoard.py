@@ -159,9 +159,6 @@ class GameBoard:
                     
         if best_move:
             best_move.configure(text=self.h.player2)
-            self.check_end_game()
-            self.switch_player()
-            self.change_current_player_label()
             
     def game_button_action(self, clicked_button) -> None:
         if (self.h.current_game_mode == "PvP"):
@@ -176,7 +173,11 @@ class GameBoard:
                     return
                 self.switch_player()
                 self.change_current_player_label()
+            else:
                 self.pve_action() # ai makes a move
+                self.check_end_game()
+                self.switch_player()
+                self.change_current_player_label()
 
     def change_current_player_label(self) -> None:
         """
