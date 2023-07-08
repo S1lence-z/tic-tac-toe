@@ -71,16 +71,16 @@ class GameBoard:
                 widget.configure(command=lambda clicked_button=widget: self.game_button_action(clicked_button))
                 self.board_widgets.append(widget)
 
-    def create_board4(self, board_frame):
+    def create_board5(self, board_frame):
         """
-        Creates the 4x4 game board.
+        Creates the 5x5 game board.
         
         Args:
             board_frame: The frame where the game board will be placed.
         """
-        for row in range(4):
-            for column in range(4):
-                widget = tk.Button(board_frame, text="", width=5, height=2, font=(self.h.button_text_font, self.h.button_text_size))
+        for row in range(5):
+            for column in range(5):
+                widget = tk.Button(board_frame, text="", width=3, height=1, font=(self.h.button_text_font, self.h.button_text_size))
                 widget.grid(row=row, column=column)
                 widget.configure(command=lambda clicked_button=widget: self.game_button_action(clicked_button))
                 self.board_widgets.append(widget)
@@ -90,14 +90,14 @@ class GameBoard:
         Displays the game board with the specified board size.
         
         Args:
-            chosen_board_size: The chosen board size (3 or 4).
+            chosen_board_size: The chosen board size (3 or 5).
         """
         self.title_frame.pack()
         self.player_turn_label.pack(side="top")
         if (chosen_board_size == "3"):
             self.create_board3(self.board_frame)
-        elif (chosen_board_size == "4"):
-            self.create_board4(self.board_frame)
+        elif (chosen_board_size == "5"):
+            self.create_board5(self.board_frame)
 
     def hide(self):
         """
@@ -219,7 +219,7 @@ class GameBoard:
         Checks if there is a winner in the game.
         
         Args:
-            board_size: The size of the game board (3 or 4).
+            board_size: The size of the game board (3 or 5).
             
         Returns:
             True if there is a winner, False otherwise.
@@ -252,53 +252,42 @@ class GameBoard:
                 return True
             return False
         
-        else:
-            # Horizontal check
-            for row in range(4):
-                if (board_widgets[row * 4]["text"] == 
-                    board_widgets[row * 4 + 1]["text"] == 
-                    board_widgets[row * 4 + 2]["text"] != ""
-                    ):
-                    return True
-                if (board_widgets[row * 4 + 1]["text"] == 
-                    board_widgets[row * 4 + 2]["text"] == 
-                    board_widgets[row * 4 + 3]["text"] != ""
-                    ):
-                    return True
-            # Vertical check
-            for column in range(4):
-                if (board_widgets[column]["text"] == 
-                    board_widgets[column + 4]["text"] == 
-                    board_widgets[column + 8]["text"] != ""
-                    ):
-                    return True
-                if (board_widgets[column + 4]["text"] == 
-                    board_widgets[column + 8]["text"] == 
-                    board_widgets[column + 12]["text"] != ""
-                    ):
-                    return True
-            # Diagonal check
-            diagonal_checks = [
-               [0, 5, 10],
-               [1, 6, 11],
-               [2, 7, 12],
-               [3, 6, 9],
-               [4, 7, 10],
-               [5, 8, 11],
-               [6, 9, 12],
-               [7, 10, 13],
-               [8, 11, 14],
-               [9, 12, 15],
-               [2, 5, 8],
-               [5, 10, 15],
-               [4, 9, 14]
+        elif board_size == "5":
+            winning_positions = [
+                # Horizontal
+                [0, 1, 2, 3],
+                [1, 2, 3, 4],
+                [5, 6, 7, 8],
+                [6, 7, 8, 9],
+                [10, 11, 12, 13],
+                [11, 12, 13, 14],
+                [15, 16, 17, 18],
+                [16, 17, 18, 19],
+                # Vertical
+                [0, 5, 10, 15],
+                [5, 10, 15, 20],
+                [1, 6, 11, 16],
+                [6, 11, 16, 21],
+                [2, 7, 12, 17],
+                [7, 12, 17, 22],
+                [3, 8, 13, 18],
+                [8, 13, 18, 23],
+                [4, 9, 14, 19],
+                [9, 14, 19, 24],
+                # Diagonal (top-left to bottom-right)
+                [0, 6, 12, 18],
+                [6, 12, 18, 24],
+                [1, 7, 13, 19],
+                [5, 11, 17, 23],
+                [4, 8, 12, 16],
+                [8, 12, 16, 20],
+                [3, 7, 11, 15],
+                [9, 13, 17, 21]
             ]
-            for combination in diagonal_checks:
-                if (
-                    board_widgets[combination[0]]["text"] == 
-                    board_widgets[combination[1]]["text"] == 
-                    board_widgets[combination[2]]["text"] != ""
-                    ):
-                    return True
 
-            return False
+        for positions in winning_positions:
+            symbols = [board_widgets[pos]["text"] for pos in positions]
+            if all(symbol != "" and symbol == symbols[0] for symbol in symbols):
+                return True
+
+        return False
