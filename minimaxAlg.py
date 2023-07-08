@@ -48,10 +48,6 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool):
     
     winner = get_winner(board,  gameBoard_class.game_controller.chosen_board_size)
     if winner != "nothing":
-        # i have to return -1 as a default value, it does not work for this case
-        # ['O', 'X', '', 'O', 'O', '', 'X', 'X', 'X']
-        # for this case the returned score by the minimax functino is None!
-        # it also does not work when the human player starts in the middle
         return scores.get(winner, -1)
     elif is_draw(board):
         return scores.get("tie", -1)
