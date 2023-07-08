@@ -4,6 +4,7 @@ class Help:
     """
     Helper class for managing game settings and messages.
     """
+    
     def __init__(self) -> None:
         """
         Initializes the Help object with default settings and game variables.
@@ -39,14 +40,12 @@ class Help:
         self.player1 = random.choice(self.player_symbols)
         self.player2 = self.set_second_player(self.player1)
         self.winning_player = ""
-        self.board3 = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-        self.board4 = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
         self.current_game_mode = ""
         
         # end screen messages (presets)
         self.game_tie_message = "It is a tie!"
         self.player_won_message = ""
-        
+
     def set_second_player(self, first_player) -> str:
         """
         Sets the second player based on the first player.
@@ -57,7 +56,7 @@ class Help:
         Returns:
             str: The symbol of the second player.
         """
-        if (first_player == self.player_symbols[0]):
+        if first_player == self.player_symbols[0]:
             return self.player_symbols[1]
         else:
             return self.player_symbols[0]
@@ -71,6 +70,12 @@ class Help:
         """
         self.winning_player = player_symbol
         self.player_won_message = f"Player {self.winning_player} has won!"
-        
+
     def set_game_mode(self, chosen_mode) -> None:
+        """
+        Sets the current game mode.
+
+        Args:
+            chosen_mode (str): The chosen game mode.
+        """
         self.current_game_mode = chosen_mode
