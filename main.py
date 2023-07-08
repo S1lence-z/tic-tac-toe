@@ -8,7 +8,7 @@ from appWindow import AppWindow
 
 class TicTacToeGame:
     """
-    A class representing the Tic Tac Toe game.
+    A class representing the TicTacToe game.
 
     Attributes:
         h (Help): An instance of the Help class.
