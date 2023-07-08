@@ -53,7 +53,7 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: floa
         "tie": 0
     }
     
-    winner = get_winner(board,  gameBoard_class.game_controller.chosen_board_size)
+    winner = get_winner(board, gameBoard_class.game_controller.chosen_board_size)
     if winner != None:
         return scores.get(winner)
 
@@ -69,6 +69,7 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: floa
                 if beta <= alpha:
                     break
         return best_score
+    
     else:
         best_score = float("inf")
         for i in range(len(board)):
