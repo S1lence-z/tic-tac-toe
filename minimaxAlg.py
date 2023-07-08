@@ -3,32 +3,24 @@ import tkinter as tk
 
 def get_winner(board: list[str], board_size: str) -> str:
     if board_size == "3":
-        # Horizontal check
-        for row in range(3):
-            if (board[row * 3] == 
-                board[row * 3 + 1] == 
-                board[row * 3 + 2] != ""
-                ):
-                return board[row]
-        # Vertical check
-        for column in range(3):
-            if (board[column] == 
-                board[column + 3] == 
-                board[column + 6] != ""
-                ):
-                return board[column]
-        # Diagonal check
-        if (board[0] == 
-            board[4] == 
-            board[8] != ""
-            ):
-            return board[0]
-        if (board[2] == 
-            board[4] == 
-            board[6] != ""
-            ):
-            return board[2]
+        winning_combinations = [
+            # Rows
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            # Columns
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            # Diagonals
+            [0, 4, 8], [2, 4, 6]
+        ]
+        
+        for combination in winning_combinations:
+            if board[combination[0]] == board[combination[1]] == board[combination[2]] != "":
+                return board[combination[0]]
+        
+        if "" not in board:
+            return "tie"
+        
         return "nothing"
+
 
 def is_draw(board: list[str]) -> bool:
     for text in board:
@@ -48,9 +40,9 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool):
     
     winner = get_winner(board,  gameBoard_class.game_controller.chosen_board_size)
     if winner != "nothing":
-        return scores.get(winner, -1)
+        return scores.get(winner)
     elif is_draw(board):
-        return scores.get("tie", -1)
+        return scores.get("tie")
 
     if is_maximizing:
         best_score = float("-inf")
@@ -60,6 +52,7 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool):
                 score = minimax(gameBoard_class, board, depth + 1, not is_maximizing)
                 board[i] = ""
                 if score == None or best_score == None:
+                    print(board)
                     print(score, best_score)
                 best_score = max(score, best_score)
         return best_score
