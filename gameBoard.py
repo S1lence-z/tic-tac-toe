@@ -146,16 +146,17 @@ class GameBoard:
         """
         best_score = float("-inf")
         best_move = None
+        widgets_copy = [widget.cget("text") for widget in self.board_widgets]
         
-        for widget in self.board_widgets:
-            if widget.cget("text") == "":
-                widget.configure(text=self.h.player2)
-                score = minimax(self, self.board_widgets, 0, False)
-                widget.configure(text="")
+        for i in range(len(widgets_copy)):
+            if widgets_copy[i] == "":
+                widgets_copy[i] = self.h.player2
+                score = minimax(self, widgets_copy, 0, False)
+                widgets_copy[i] = ""
                 
                 if score > best_score:
                     best_score = score
-                    best_move = widget
+                    best_move = self.board_widgets[i]
                     
         if best_move:
             best_move.configure(text=self.h.player2)
@@ -173,7 +174,6 @@ class GameBoard:
                     return
                 self.switch_player()
                 self.change_current_player_label()
-            else:
                 self.pve_action() # ai makes a move
                 self.check_end_game()
                 self.switch_player()
