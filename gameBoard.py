@@ -150,7 +150,7 @@ class GameBoard:
         for widget in self.board_widgets:
             if widget.cget("text") == "":
                 widget.configure(text=self.h.player2)
-                score = minimax(self, 0, False)
+                score = minimax(self, self.board_widgets, 0, False)
                 widget.configure(text="")
                 
                 if score > best_score:
@@ -176,8 +176,8 @@ class GameBoard:
                     return
                 self.switch_player()
                 self.change_current_player_label()
-                self.pve_action()
-            
+                self.pve_action() # ai makes a move
+
     def change_current_player_label(self) -> None:
         """
         Changes the current player which is displayed on the player label.
@@ -188,12 +188,12 @@ class GameBoard:
         """
         Checks if the game has ended in any way and adjusts the end screen accordingly.
         """
-        if (self.check_draw()):
-            self.game_controller.end_screen(self.h.game_tie_message)
-            return True
-        if (self.check_winner(self.game_controller.chosen_board_size)):
+        if (self.check_winner(self.board_widgets, self.game_controller.chosen_board_size)):
             self.h.winning_player = self.h.set_winning_player(self.current_player)
             self.game_controller.end_screen(self.h.player_won_message)
+            return True
+        elif (self.check_draw()):
+            self.game_controller.end_screen(self.h.game_tie_message)
             return True
         
         return False
@@ -210,7 +210,7 @@ class GameBoard:
                 return False
         return True
 
-    def check_winner(self, board_size) -> bool:
+    def check_winner(self, board_widgets, board_size) -> bool:
         """
         Checks if there is a winner in the game.
         
@@ -223,27 +223,27 @@ class GameBoard:
         if board_size == "3":
             # Horizontal check
             for row in range(3):
-                if (self.board_widgets[row * 3]["text"] == 
-                    self.board_widgets[row * 3 + 1]["text"] == 
-                    self.board_widgets[row * 3 + 2]["text"] != ""
+                if (board_widgets[row * 3]["text"] == 
+                    board_widgets[row * 3 + 1]["text"] == 
+                    board_widgets[row * 3 + 2]["text"] != ""
                     ):
                     return True
             # Vertical check
             for column in range(3):
-                if (self.board_widgets[column]["text"] == 
-                    self.board_widgets[column + 3]["text"] == 
-                    self.board_widgets[column + 6]["text"] != ""
+                if (board_widgets[column]["text"] == 
+                    board_widgets[column + 3]["text"] == 
+                    board_widgets[column + 6]["text"] != ""
                     ):
                     return True
             # Diagonal check
-            if (self.board_widgets[0]["text"] == 
-                self.board_widgets[4]["text"] == 
-                self.board_widgets[8]["text"] != ""
+            if (board_widgets[0]["text"] == 
+                board_widgets[4]["text"] == 
+                board_widgets[8]["text"] != ""
                 ):
                 return True
-            if (self.board_widgets[2]["text"] == 
-                self.board_widgets[4]["text"] == 
-                self.board_widgets[6]["text"] != ""
+            if (board_widgets[2]["text"] == 
+                board_widgets[4]["text"] == 
+                board_widgets[6]["text"] != ""
                 ):
                 return True
             return False
@@ -251,26 +251,26 @@ class GameBoard:
         else:
             # Horizontal check
             for row in range(4):
-                if (self.board_widgets[row * 4]["text"] == 
-                    self.board_widgets[row * 4 + 1]["text"] == 
-                    self.board_widgets[row * 4 + 2]["text"] != ""
+                if (board_widgets[row * 4]["text"] == 
+                    board_widgets[row * 4 + 1]["text"] == 
+                    board_widgets[row * 4 + 2]["text"] != ""
                     ):
                     return True
-                if (self.board_widgets[row * 4 + 1]["text"] == 
-                    self.board_widgets[row * 4 + 2]["text"] == 
-                    self.board_widgets[row * 4 + 3]["text"] != ""
+                if (board_widgets[row * 4 + 1]["text"] == 
+                    board_widgets[row * 4 + 2]["text"] == 
+                    board_widgets[row * 4 + 3]["text"] != ""
                     ):
                     return True
             # Vertical check
             for column in range(4):
-                if (self.board_widgets[column]["text"] == 
-                    self.board_widgets[column + 4]["text"] == 
-                    self.board_widgets[column + 8]["text"] != ""
+                if (board_widgets[column]["text"] == 
+                    board_widgets[column + 4]["text"] == 
+                    board_widgets[column + 8]["text"] != ""
                     ):
                     return True
-                if (self.board_widgets[column + 4]["text"] == 
-                    self.board_widgets[column + 8]["text"] == 
-                    self.board_widgets[column + 12]["text"] != ""
+                if (board_widgets[column + 4]["text"] == 
+                    board_widgets[column + 8]["text"] == 
+                    board_widgets[column + 12]["text"] != ""
                     ):
                     return True
             # Diagonal check
@@ -291,9 +291,9 @@ class GameBoard:
             ]
             for combination in diagonal_checks:
                 if (
-                    self.board_widgets[combination[0]]["text"] == 
-                    self.board_widgets[combination[1]]["text"] == 
-                    self.board_widgets[combination[2]]["text"] != ""
+                    board_widgets[combination[0]]["text"] == 
+                    board_widgets[combination[1]]["text"] == 
+                    board_widgets[combination[2]]["text"] != ""
                     ):
                     return True
 
