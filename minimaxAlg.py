@@ -36,13 +36,13 @@ def is_draw(board: list) -> bool:
             return False
     return True
 
-def convert_to_board_widgets(board: list[str], board_widgets: list[tk.Button]) -> list[tk.Button]:
+def convert_to_board_widgets(board: list[str], widgets: list[tk.Button]) -> list[tk.Button]:
     for i in range(len(board)):
-        board_widgets[i].configure(text=board[i])
-    return board_widgets
+        widgets[i].configure(text=board[i])
+    return widgets
 
-def minimax(gameBoard_class, board_widgets, depth: int, is_maximizing: bool):
-    board = [widget.cget("text") for widget in board_widgets]
+def minimax(gameBoard_class, widgets, depth: int, is_maximizing: bool):
+    board = [widget.cget("text") for widget in widgets]
     
     scores = {
         gameBoard_class.h.player1: -1,
@@ -63,8 +63,8 @@ def minimax(gameBoard_class, board_widgets, depth: int, is_maximizing: bool):
         for i in range(len(board)):
             if board[i] == "":
                 board[i] = gameBoard_class.h.player2
-                temp = convert_to_board_widgets(board, board_widgets)
-                score = minimax(gameBoard_class, temp, depth + 1, False)
+                converted_widgets = convert_to_board_widgets(board, widgets)
+                score = minimax(gameBoard_class, converted_widgets, depth + 1, False)
                 board[i] = ""
                 best_score = max(score, best_score)
         return best_score
@@ -73,8 +73,8 @@ def minimax(gameBoard_class, board_widgets, depth: int, is_maximizing: bool):
         for i in range(len(board)):
             if board[i] == "":
                 board[i] = gameBoard_class.h.player1
-                temp = convert_to_board_widgets(board, board_widgets)
-                score = minimax(gameBoard_class, temp, depth + 1, True)
+                converted_widgets = convert_to_board_widgets(board, widgets)
+                score = minimax(gameBoard_class, converted_widgets, depth + 1, True)
                 board[i] = ""
                 best_score = min(score, best_score)
         return best_score
