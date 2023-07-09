@@ -17,6 +17,7 @@ class GameBoard:
         title_frame: The frame that holds the title label.
         player_turn_label: The label that displays the current player's turn.
         board_widgets: The list of buttons representing the game board.
+        memoization_table: A dictionary to store computed scores for specific board configurations.
     """
     
     def __init__(self, root, help: Help, game_controller) -> None:
@@ -36,6 +37,7 @@ class GameBoard:
         self.title_frame = tk.Frame(root, pady=5, bg=help.frame_colour)
         self.player_turn_label = tk.Label(self.title_frame, padx=10, pady=10, text=self.current_player + "'s turn", font=(help.button_text_font, help.title_size), bg=help.title_colour)
         self.board_widgets = []
+        self.memoization_table = {}
         
     def end_game(self) -> None:
         """
@@ -156,7 +158,7 @@ class GameBoard:
         for i in range(len(widgets_copy)):
             if widgets_copy[i] == "":
                 widgets_copy[i] = self.h.player2
-                score = minimax(self, widgets_copy, 0, False, float("-inf"), float("inf"))
+                score = minimax(self, widgets_copy, 0, False, float("-inf"), float("inf"), self.memoization_table)
                 widgets_copy[i] = ""
                 
                 if score > best_score:
