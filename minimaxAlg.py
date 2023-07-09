@@ -60,7 +60,7 @@ def get_winner(board: list[str], board_size: str) -> str:
         # No winner yet
         return None
 
-def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: float, beta: float):
+def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: float, beta: float) -> float:
     """
     Implementation of the minimax algorithm with alpha-beta pruning to find the best move for the AI player.
 

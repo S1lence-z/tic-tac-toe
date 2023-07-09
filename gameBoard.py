@@ -19,7 +19,7 @@ class GameBoard:
         board_widgets: The list of buttons representing the game board.
     """
     
-    def __init__(self, root, help: Help, game_controller):
+    def __init__(self, root, help: Help, game_controller) -> None:
         """
         Initializes the GameBoard instance.
         
@@ -57,7 +57,7 @@ class GameBoard:
         board_frame.place(relx=0.5, rely=.56, anchor="center")
         return board_frame
 
-    def create_board3(self, board_frame):
+    def create_board3(self, board_frame) -> None:
         """
         Creates the 3x3 game board.
         
@@ -71,7 +71,7 @@ class GameBoard:
                 widget.configure(command=lambda clicked_button=widget: self.game_button_action(clicked_button))
                 self.board_widgets.append(widget)
 
-    def create_board5(self, board_frame):
+    def create_board5(self, board_frame) -> None:
         """
         Creates the 5x5 game board.
         
@@ -99,7 +99,7 @@ class GameBoard:
         elif (chosen_board_size == "5"):
             self.create_board5(self.board_frame)
 
-    def hide(self):
+    def hide(self) -> None:
         """
         Hides the game board.
         """
@@ -109,7 +109,7 @@ class GameBoard:
         for widget in self.board_widgets:
             widget.grid_forget()
             
-    def destroy_widgets(self):
+    def destroy_widgets(self) -> None:
         """
         Destroys all the widgets in the game board.
         """

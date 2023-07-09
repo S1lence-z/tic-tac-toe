@@ -9,7 +9,7 @@ class AppWindow(tk.Tk):
         h (Help): An instance of the Help class that provides configuration settings.
     """
     
-    def __init__(self, h: Help):
+    def __init__(self, h: Help) -> None:
         """
         Initializes the AppWindow instance.
         

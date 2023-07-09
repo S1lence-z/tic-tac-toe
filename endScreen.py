@@ -74,7 +74,7 @@ class EndScreen:
         button_frame = tk.Frame(root, padx=10, pady=70, bg=self.h.frame_colour)
         return button_frame
 
-    def create_button(self, frame, text, action):
+    def create_button(self, frame, text, action) -> tk.Button:
         """
         Creates and returns a button.
         
@@ -119,7 +119,7 @@ class EndScreen:
         self.exit_to_menu_button.pack_forget()
         self.exit_the_game.pack_forget()
         
-    def destroy_widgets(self):
+    def destroy_widgets(self) -> None:
         """
         Destroys all the widgets in the end screen.
         """

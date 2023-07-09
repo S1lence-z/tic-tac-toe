@@ -29,7 +29,7 @@ class TicTacToeGame:
         exit_to_menu() -> None: Exits to the main menu.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initializes the TicTacToeGame class.
 

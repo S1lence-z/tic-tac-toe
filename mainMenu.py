@@ -39,7 +39,7 @@ class MainMenu:
         self.start_button_frame = self.create_start_button_frame(root)
         self.start_button = self.create_start_button(self.start_button_frame, "START", self.start_game, 1, 1)
         
-    def create_start_button_frame(self, root):
+    def create_start_button_frame(self, root) -> tk.Frame:
         """
         Create a frame to contain the start button.
 
@@ -52,7 +52,7 @@ class MainMenu:
         start_button_frame = tk.Frame(root, padx=10, pady=10, bg=self.h.frame_colour)
         return start_button_frame
     
-    def create_start_button(self, frame, text, action, row, column):
+    def create_start_button(self, frame, text, action, row, column) -> tk.Button:
         """
         Create the start button with the provided parameters.
 
@@ -70,7 +70,7 @@ class MainMenu:
         start_button.configure(font=(self.h.start_button_text_colour, self.h.button_text_size))
         return start_button
     
-    def create_button_frame(self, root) -> None:
+    def create_button_frame(self, root) -> tk.Frame:
         """
         Create a frame to contain the buttons.
 
@@ -85,7 +85,7 @@ class MainMenu:
         button_frame.columnconfigure(1, weight=1)
         return button_frame
         
-    def create_button(self, frame, text, action, row, column):
+    def create_button(self, frame, text, action, row, column) -> tk.Button:
         """
         Create a button with the provided parameters.
 
@@ -228,7 +228,7 @@ class MainMenu:
         self.grid3_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
         self.game_controller.change_gameBoard_size("5")
 
-    def start_game(self):
+    def start_game(self) -> None:
         """
         Start the game.
         """
