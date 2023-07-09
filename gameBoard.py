@@ -265,7 +265,7 @@ class GameBoard:
                 return True
             return False
         
-        elif board_size == 4:
+        elif board_size == "4":
             winning_positions = [
                 # Horizontal
                 [0, 1, 2, 3],
@@ -283,8 +283,7 @@ class GameBoard:
             ]
 
             for positions in winning_positions:
-                symbols = [board_widgets[pos] for pos in positions]
-                if all(symbol != ' ' and symbol == symbols[0] for symbol in symbols):
+                if board_widgets[positions[0]]["text"] == board_widgets[positions[1]]["text"] == board_widgets[positions[2]]["text"] == board_widgets[positions[3]]["text"] != "":
                     return True
 
             return False
