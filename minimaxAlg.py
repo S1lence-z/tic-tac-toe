@@ -6,7 +6,7 @@ def get_winner(board: list[str], board_size: str) -> str:
 
     Args:
         board (list[str]): The current state of the tic-tac-toe board.
-        board_size (str): The size of the tic-tac-toe board (either "3" or "5").
+        board_size (str): The size of the tic-tac-toe board (either "3" or "4").
 
     Returns:
         str: The winner of the game ("X" or "O") or "tie" for a tie game. If the game is not yet over, returns None.
@@ -34,18 +34,22 @@ def get_winner(board: list[str], board_size: str) -> str:
         # No winner yet
         return None
     
-    elif board_size == "5":
+    elif board_size == "4":
         # Define the winning combinations for a 5x5 board
         winning_combinations = [
-            # Rows
-            [0, 1, 2, 3], [1, 2, 3, 4], [5, 6, 7, 8], [6, 7, 8, 9],
-            [10, 11, 12, 13], [11, 12, 13, 14], [15, 16, 17, 18], [16, 17, 18, 19], [20, 21, 22, 23],
-            [21, 22, 23, 24],
-            # Columns
-            [0, 5, 10, 15], [5, 10, 15, 20], [1, 6, 11, 16], [6, 11, 16, 21], [2, 7, 12, 17], [7, 12, 17, 22],
-            [3, 8, 13, 18], [8, 13, 18, 23], [4, 9, 14, 19], [9, 14, 19, 24],
-            # Diagonals
-            [0, 6, 12, 18], [6, 12, 18, 24], [1, 7, 13, 19], [5, 11, 17, 23], [4, 8, 12, 16], [8, 12, 16, 20], [3, 7, 11, 15], [9, 13, 17, 21]
+            # Horizontal
+            [0, 1, 2, 3],
+            [4, 5, 6, 7],
+            [8, 9, 10, 11],
+            [12, 13, 14, 15],
+            # Vertical
+            [0, 4, 8, 12],
+            [1, 5, 9, 13],
+            [2, 6, 10, 14],
+            [3, 7, 11, 15],
+            # Diagonal (top-left to bottom-right)
+            [0, 5, 10, 15],
+            [3, 6, 9, 12]
         ]
 
         # Check each winning combination to see if any player has won
@@ -60,7 +64,7 @@ def get_winner(board: list[str], board_size: str) -> str:
         # No winner yet
         return None
 
-def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: float, beta: float) -> float:
+def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: float, beta: float, memoization_table: dict) -> float:
     """
     Implementation of the minimax algorithm with alpha-beta pruning to find the best move for the AI player.
 
@@ -84,21 +88,29 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: floa
         "tie": 0
     }
     
+    # I have to convert the board to an immutable object
+    hash_ready_board = tuple(board)
+    if hash_ready_board in memoization_table:
+        return memoization_table[hash_ready_board]
+    
     winner = get_winner(board, gameBoard_class.game_controller.chosen_board_size)
     if winner is not None:
-        return scores.get(winner)
+        final_score = scores.get(winner)
+        memoization_table[hash_ready_board] = final_score
+        return final_score
 
     if is_maximizing:
         best_score = float("-inf")
         for i in range(len(board)):
             if board[i] == "":
                 board[i] = ai_player
-                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing, alpha, beta)
+                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing, alpha, beta, memoization_table)
                 board[i] = ""
                 best_score = max(score, best_score)
                 alpha = max(alpha, best_score)
                 if beta <= alpha:
                     break
+        memoization_table[hash_ready_board] = best_score
         return best_score
     
     else:
@@ -106,10 +118,11 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: floa
         for i in range(len(board)):
             if board[i] == "":
                 board[i] = human_player
-                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing, alpha, beta)
+                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing, alpha, beta, memoization_table)
                 board[i] = ""
                 best_score = min(score, best_score)
                 beta = min(beta, best_score)
                 if beta <= alpha:
                     break
+        memoization_table[hash_ready_board] = best_score
         return best_score

@@ -17,6 +17,7 @@ class GameBoard:
         title_frame: The frame that holds the title label.
         player_turn_label: The label that displays the current player's turn.
         board_widgets: The list of buttons representing the game board.
+        memoization_table: A dictionary to store computed scores for specific board configurations.
     """
     
     def __init__(self, root, help: Help, game_controller) -> None:
@@ -36,6 +37,7 @@ class GameBoard:
         self.title_frame = tk.Frame(root, pady=5, bg=help.frame_colour)
         self.player_turn_label = tk.Label(self.title_frame, padx=10, pady=10, text=self.current_player + "'s turn", font=(help.button_text_font, help.title_size), bg=help.title_colour)
         self.board_widgets = []
+        self.memoization_table = {}
         
     def end_game(self) -> None:
         """
@@ -71,16 +73,16 @@ class GameBoard:
                 widget.configure(command=lambda clicked_button=widget: self.game_button_action(clicked_button))
                 self.board_widgets.append(widget)
 
-    def create_board5(self, board_frame) -> None:
+    def create_board4(self, board_frame) -> None:
         """
-        Creates the 5x5 game board.
+        Creates the 4x4 game board.
         
         Args:
             board_frame: The frame where the game board will be placed.
         """
-        for row in range(5):
-            for column in range(5):
-                widget = tk.Button(board_frame, text="", width=3, height=1, font=(self.h.button_text_font, self.h.button_text_size))
+        for row in range(4):
+            for column in range(4):
+                widget = tk.Button(board_frame, text="", width=4, height=2, font=(self.h.button_text_font, self.h.button_text_size))
                 widget.grid(row=row, column=column)
                 widget.configure(command=lambda clicked_button=widget: self.game_button_action(clicked_button))
                 self.board_widgets.append(widget)
@@ -96,8 +98,8 @@ class GameBoard:
         self.player_turn_label.pack(side="top")
         if (chosen_board_size == "3"):
             self.create_board3(self.board_frame)
-        elif (chosen_board_size == "5"):
-            self.create_board5(self.board_frame)
+        elif (chosen_board_size == "4"):
+            self.create_board4(self.board_frame)
 
     def hide(self) -> None:
         """
@@ -156,7 +158,7 @@ class GameBoard:
         for i in range(len(widgets_copy)):
             if widgets_copy[i] == "":
                 widgets_copy[i] = self.h.player2
-                score = minimax(self, widgets_copy, 0, False, float("-inf"), float("inf"))
+                score = minimax(self, widgets_copy, 0, False, float("-inf"), float("inf"), self.memoization_table)
                 widgets_copy[i] = ""
                 
                 if score > best_score:
@@ -232,7 +234,7 @@ class GameBoard:
         Checks if there is a winner in the game.
         
         Args:
-            board_size: The size of the game board (3 or 5).
+            board_size: The size of the game board (3 or 4).
             
         Returns:
             True if there is a winner, False otherwise.
@@ -265,42 +267,25 @@ class GameBoard:
                 return True
             return False
         
-        elif board_size == "5":
+        elif board_size == "4":
             winning_positions = [
                 # Horizontal
                 [0, 1, 2, 3],
-                [1, 2, 3, 4],
-                [5, 6, 7, 8],
-                [6, 7, 8, 9],
-                [10, 11, 12, 13],
-                [11, 12, 13, 14],
-                [15, 16, 17, 18],
-                [16, 17, 18, 19],
+                [4, 5, 6, 7],
+                [8, 9, 10, 11],
+                [12, 13, 14, 15],
                 # Vertical
-                [0, 5, 10, 15],
-                [5, 10, 15, 20],
-                [1, 6, 11, 16],
-                [6, 11, 16, 21],
-                [2, 7, 12, 17],
-                [7, 12, 17, 22],
-                [3, 8, 13, 18],
-                [8, 13, 18, 23],
-                [4, 9, 14, 19],
-                [9, 14, 19, 24],
-                # Diagonal (top-left to bottom-right)
-                [0, 6, 12, 18],
-                [6, 12, 18, 24],
-                [1, 7, 13, 19],
-                [5, 11, 17, 23],
-                [4, 8, 12, 16],
-                [8, 12, 16, 20],
+                [0, 4, 8, 12],
+                [1, 5, 9, 13],
+                [2, 6, 10, 14],
                 [3, 7, 11, 15],
-                [9, 13, 17, 21]
+                # Diagonal (top-left to bottom-right)
+                [0, 5, 10, 15],
+                [3, 6, 9, 12]
             ]
 
-        for positions in winning_positions:
-            symbols = [board_widgets[pos]["text"] for pos in positions]
-            if all(symbol != "" and symbol == symbols[0] for symbol in symbols):
-                return True
+            for positions in winning_positions:
+                if board_widgets[positions[0]]["text"] == board_widgets[positions[1]]["text"] == board_widgets[positions[2]]["text"] == board_widgets[positions[3]]["text"] != "":
+                    return True
 
-        return False
+            return False
