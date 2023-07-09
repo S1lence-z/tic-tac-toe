@@ -33,7 +33,7 @@ class EndScreen:
         # all buttons to be present
         self.restart_with_same_settings_button = self.create_button(self.button_frame, "Restart", self.restart_with_same_settings)
         self.exit_to_menu_button = self.create_button(self.button_frame, "Exit To Menu", self.exit_to_menu)
-        self.exit_the_game = self.create_button(self.button_frame, "Exit Game", root.quit)
+        self.exit_the_game_button = self.create_button(self.button_frame, "Exit Game", root.quit)
         
     def create_title_frame(self, root) -> None:
         """
@@ -105,7 +105,7 @@ class EndScreen:
         self.button_frame.pack()
         self.restart_with_same_settings_button.pack(pady=5)
         self.exit_to_menu_button.pack(pady=5)
-        self.exit_the_game.pack(pady=5)
+        self.exit_the_game_button.pack(pady=5)
         
     def hide(self) -> None:
         """
@@ -117,7 +117,7 @@ class EndScreen:
         # buttons
         self.restart_with_same_settings_button.pack_forget()
         self.exit_to_menu_button.pack_forget()
-        self.exit_the_game.pack_forget()
+        self.exit_the_game_button.pack_forget()
         
     def destroy_widgets(self) -> None:
         """
@@ -128,7 +128,7 @@ class EndScreen:
         self.button_frame.destroy()
         self.restart_with_same_settings_button.destroy()
         self.exit_to_menu_button.destroy()
-        self.exit_the_game.destroy()
+        self.exit_the_game_button.destroy()
 
     def exit_to_menu(self) -> None:
         """
