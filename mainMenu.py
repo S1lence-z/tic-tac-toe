@@ -33,7 +33,7 @@ class MainMenu:
         self.pvp_button = self.create_button(self.button_frame, "PvP", self.pvp_mode, 0, 0)
         self.pve_button = self.create_button(self.button_frame, "PvE", self.pve_mode, 0, 1)
         self.grid3_button = self.create_button(self.button_frame, "3x3", self.board3_change, 1, 0)
-        self.grid5_button = self.create_button(self.button_frame, "5x5", self.board5_change, 1, 1)
+        self.grid5_button = self.create_button(self.button_frame, "4x4", self.board4_change, 1, 1)
         
         # Create and set up the start button frame and start button
         self.start_button_frame = self.create_start_button_frame(root)
@@ -219,14 +219,14 @@ class MainMenu:
         self.grid5_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
         self.game_controller.change_gameBoard_size("3")
 
-    def board5_change(self) -> None:
+    def board4_change(self) -> None:
         """
-        Change the game board size to 5x5.
+        Change the game board size to 4x4.
         """
         # Configure the buttons for 5x5 board size and update the game controller
         self.grid5_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.grid3_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
-        self.game_controller.change_gameBoard_size("5")
+        self.game_controller.change_gameBoard_size("4")
 
     def start_game(self) -> None:
         """
