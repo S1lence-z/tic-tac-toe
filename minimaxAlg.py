@@ -64,7 +64,7 @@ def get_winner(board: list[str], board_size: str) -> str:
         # No winner yet
         return None
 
-def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: float, beta: float) -> float:
+def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: float, beta: float, memoization_table: dict) -> float:
     """
     Implementation of the minimax algorithm with alpha-beta pruning to find the best move for the AI player.
 
@@ -88,21 +88,29 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: floa
         "tie": 0
     }
     
+    # I have to convert the board to an immutable object
+    hash_ready_board = tuple(board)
+    if hash_ready_board in memoization_table:
+        return memoization_table[hash_ready_board]
+    
     winner = get_winner(board, gameBoard_class.game_controller.chosen_board_size)
     if winner is not None:
-        return scores.get(winner)
+        final_score = scores.get(winner)
+        memoization_table[hash_ready_board] = final_score
+        return final_score
 
     if is_maximizing:
         best_score = float("-inf")
         for i in range(len(board)):
             if board[i] == "":
                 board[i] = ai_player
-                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing, alpha, beta)
+                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing, alpha, beta, memoization_table)
                 board[i] = ""
                 best_score = max(score, best_score)
                 alpha = max(alpha, best_score)
                 if beta <= alpha:
                     break
+        memoization_table[hash_ready_board] = best_score
         return best_score
     
     else:
@@ -110,10 +118,11 @@ def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: floa
         for i in range(len(board)):
             if board[i] == "":
                 board[i] = human_player
-                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing, alpha, beta)
+                score = minimax(gameBoard_class, board, depth + 1, not is_maximizing, alpha, beta, memoization_table)
                 board[i] = ""
                 best_score = min(score, best_score)
                 beta = min(beta, best_score)
                 if beta <= alpha:
                     break
+        memoization_table[hash_ready_board] = best_score
         return best_score
