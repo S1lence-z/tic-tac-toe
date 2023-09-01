@@ -92,7 +92,7 @@ class GameBoard:
         Displays the game board with the specified board size.
         
         Args:
-            chosen_board_size: The chosen board size (3 or 5).
+            chosen_board_size: The chosen board size (3 or 4).
         """
         self.title_frame.pack()
         self.player_turn_label.pack(side="top")

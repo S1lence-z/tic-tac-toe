@@ -35,7 +35,7 @@ def get_winner(board: list[str], board_size: str) -> str:
         return None
     
     elif board_size == "4":
-        # Define the winning combinations for a 5x5 board
+        # Define the winning combinations for a 4x4 board
         winning_combinations = [
             # Horizontal
             [0, 1, 2, 3],

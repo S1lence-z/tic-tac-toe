@@ -33,7 +33,7 @@ class MainMenu:
         self.pvp_button = self.create_button(self.button_frame, "PvP", self.pvp_mode, 0, 0)
         self.pve_button = self.create_button(self.button_frame, "PvE", self.pve_mode, 0, 1)
         self.grid3_button = self.create_button(self.button_frame, "3x3", self.board3_change, 1, 0)
-        self.grid5_button = self.create_button(self.button_frame, "4x4", self.board4_change, 1, 1)
+        self.grid4_button = self.create_button(self.button_frame, "4x4", self.board4_change, 1, 1)
         
         # Create and set up the start button frame and start button
         self.start_button_frame = self.create_start_button_frame(root)
@@ -158,7 +158,7 @@ class MainMenu:
         self.pvp_button.grid(row=0, column=0, pady=5, padx=5)
         self.pve_button.grid(row=0, column=1, pady=5, padx=5)
         self.grid3_button.grid(row=1, column=0, pady=5, padx=5)
-        self.grid5_button.grid(row=1, column=1, pady=5, padx=5)
+        self.grid4_button.grid(row=1, column=1, pady=5, padx=5)
         
     def hide(self) -> None:
         """
@@ -175,7 +175,7 @@ class MainMenu:
         self.pvp_button.grid_forget()
         self.pve_button.grid_forget()
         self.grid3_button.grid_forget()
-        self.grid5_button.grid_forget()
+        self.grid4_button.grid_forget()
         
     def destroy_widgets(self) -> None:
         """
@@ -190,7 +190,7 @@ class MainMenu:
         self.pvp_button.destroy()
         self.pve_button.destroy()
         self.grid3_button.destroy()
-        self.grid5_button.destroy()
+        self.grid4_button.destroy()
 
     def pvp_mode(self) -> None:
         """
@@ -216,15 +216,15 @@ class MainMenu:
         """
         # Configure the buttons for 3x3 board size and update the game controller
         self.grid3_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
-        self.grid5_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
+        self.grid4_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
         self.game_controller.change_gameBoard_size("3")
 
     def board4_change(self) -> None:
         """
         Change the game board size to 4x4.
         """
-        # Configure the buttons for 5x5 board size and update the game controller
-        self.grid5_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
+        # Configure the buttons for 4x4 board size and update the game controller
+        self.grid4_button.configure(bg=self.h.button_colour_clicked, fg=self.h.button_text_colour_clicked)
         self.grid3_button.configure(bg=self.h.button_colour_inactive, fg=self.h.button_text_colour_inactive)
         self.game_controller.change_gameBoard_size("4")
 
