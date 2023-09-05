@@ -11,6 +11,8 @@ It is a simple TicTacToe game with two options of gameplay:
 2. Open the repository in VS Code or in your favourite IDE.
 3. Open the main.py file and run it... Enjoy the game!
 
+---
+
 # Documentation
 
 **Program Documentation**: [Program Docs](docs/program_docs.md)
