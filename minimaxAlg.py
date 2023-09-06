@@ -69,10 +69,10 @@ def check_tie_3(gameBoard_class: GameBoard) -> bool:
     """This function returns True if the 3x3 game cannot be won by either player (the only outcome is a tie) else false.
 
     Args:
-        gameBoard_class (GameBoard): an instance fo the GameBoard class
+        gameBoard_class (GameBoard): an instance of the GameBoard class
 
     Returns:
-        bool: if the only outcome is tie returns true else false
+        bool: if the only outcome is a tie returns true else false
     """
     return
 
@@ -83,7 +83,7 @@ def check_tie_4(gameBoard_class: GameBoard) -> bool:
         gameBoard_class (GameBoard): an instance of the GameBoard class
 
     Returns:
-        bool: if the only outcome is tie returns true else false
+        bool: if the only outcome is a tie returns true else false
     """
     return
     
