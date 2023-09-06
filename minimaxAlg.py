@@ -73,6 +73,7 @@ def check_tie_3(gameBoard_class) -> bool:
     Returns:
         bool: if the only outcome is a tie returns true else false
     """
+    # it seems to me that this can only be achieved when there are 2 or less empty spaces, I did not find a combinations when it an only be a tie when there are 3 and more empty space
     return
 
 def check_tie_4(gameBoard_class) -> bool:
