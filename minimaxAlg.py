@@ -1,5 +1,4 @@
 import tkinter as tk
-from gameBoard import GameBoard
 
 def get_winner(board: list[str], board_size: str) -> str:
     """
@@ -65,7 +64,7 @@ def get_winner(board: list[str], board_size: str) -> str:
         # No winner yet
         return None
 
-def check_tie_3(gameBoard_class: GameBoard) -> bool:
+def check_tie_3(gameBoard_class) -> bool:
     """This function returns True if the 3x3 game cannot be won by either player (the only outcome is a tie) else false.
 
     Args:
@@ -76,7 +75,7 @@ def check_tie_3(gameBoard_class: GameBoard) -> bool:
     """
     return
 
-def check_tie_4(gameBoard_class: GameBoard) -> bool:
+def check_tie_4(gameBoard_class) -> bool:
     """This function returns True if the 4x4 game cannot be won by either player (the only outcome is a tie) else false.
 
     Args:
