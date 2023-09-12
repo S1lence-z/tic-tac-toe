@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from help import Help
-from minimaxAlg import minimax
+from minimaxAlg import minimax, check_only_tie
 
 class GameBoard:
     """
@@ -154,17 +154,23 @@ class GameBoard:
         best_score = float("-inf")
         best_move = None
         widgets_copy = [widget.cget("text") for widget in self.board_widgets]
+        is_only_tie = check_only_tie(widgets_copy)
         
-        for i in range(len(widgets_copy)):
-            if widgets_copy[i] == "":
-                widgets_copy[i] = self.h.player2
-                score = minimax(self, widgets_copy, 0, False, float("-inf"), float("inf"), self.memoization_table)
-                widgets_copy[i] = ""
-                
-                if score > best_score:
-                    best_score = score
+        if is_only_tie:
+            for i in range(len(widgets_copy)):
+                if widgets_copy[i] == "":
                     best_move = self.board_widgets[i]
+        else:
+            for i in range(len(widgets_copy)):
+                if widgets_copy[i] == "":
+                    widgets_copy[i] = self.h.player2
+                    score = minimax(self, widgets_copy, 0, False, float("-inf"), float("inf"), self.memoization_table)
+                    widgets_copy[i] = ""
                     
+                    if score > best_score:
+                        best_score = score
+                        best_move = self.board_widgets[i]
+                        
         if best_move:
             best_move.configure(text=self.h.player2)
             
