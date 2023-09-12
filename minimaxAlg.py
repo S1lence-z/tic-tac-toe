@@ -73,8 +73,8 @@ def check_only_tie(board) -> bool:
     Returns:
         bool: if the only outcome is a tie returns true else false
     """
-    # it seems to me that this can only be achieved when there are 2 or less empty spaces, I did not find a combinations when it can only be a tie when there are 3 and more empty space
-    # for the 4x4 board it can also be the case with up to 4 empty spaces
+    # it seems to me that this can only be achieved when there are 2 or less empty spaces, I did not find a combinations when it can only be a tie when there are 3 and more empty space (for the 4x4 board it can also be the case with up to 4 empty spaces)
+    # it would be better, if the minimax fnc remembered all its outcomes and if all the outcomes were 0, then it could only be a tie
     empty_spaces = 0
     for widget in board:
         if widget == "":
