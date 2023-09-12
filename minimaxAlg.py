@@ -64,29 +64,24 @@ def get_winner(board: list[str], board_size: str) -> str:
         # No winner yet
         return None
 
-def check_tie_3(gameBoard_class) -> bool:
+def check_only_tie(board) -> bool:
     """This function returns True if the 3x3 game cannot be won by either player (the only outcome is a tie) else false.
 
     Args:
-        gameBoard_class (GameBoard): an instance of the GameBoard class
+        board (list): all widgets on the game board
 
     Returns:
         bool: if the only outcome is a tie returns true else false
     """
     # it seems to me that this can only be achieved when there are 2 or less empty spaces, I did not find a combinations when it can only be a tie when there are 3 and more empty space
-    return
-
-def check_tie_4(gameBoard_class) -> bool:
-    """This function returns True if the 4x4 game cannot be won by either player (the only outcome is a tie) else false.
-
-    Args:
-        gameBoard_class (GameBoard): an instance of the GameBoard class
-
-    Returns:
-        bool: if the only outcome is a tie returns true else false
-    """
-    return
-    
+    empty_spaces = 0
+    for widget in board:
+        if widget == "":
+            empty_spaces += 1
+            
+    if empty_spaces <= 2:
+        return True
+    return False
 
 def minimax(gameBoard_class, board, depth: int, is_maximizing: bool, alpha: float, beta: float, memoization_table: dict) -> float:
     """
